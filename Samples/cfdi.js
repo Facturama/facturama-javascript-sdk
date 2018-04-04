@@ -7,7 +7,7 @@ var newCfdi = {
     "PaymentForm": "03",
     "PaymentMethod": "PUE",
     "Receiver": {
-        "Rfc": "RSS2202108U5",
+        "Rfc": "XAXX010101000",
         "Name": "RADIAL SOFTWARE SOLUTIONS",
         "CfdiUse": "P01"
     },
@@ -68,8 +68,7 @@ function testCRUDCfdi() {
 
 
 	//creacion de un cfdi
-	newCfdi.ExpeditionPlace = "78220";
-	newCfdi.Serie = null;
+	newCfdi.ExpeditionPlace = "78116";
 	Facturama.Cfdi.Create(newCfdi, function(result){ 
 		cfdi = result;
 		console.log("creacion",result);
@@ -84,19 +83,35 @@ function testCRUDCfdi() {
 		//descargar el PDF del cfdi
 		Facturama.Cfdi.Download("pdf", "issued", cfdi.Id, function(result){
 			console.log("descarga",result);
-			window.open("data:application/pdf;base64," + Base64.encode(result));
+
+			blob = converBase64toBlob(result.Content, 'application/pdf');
+
+			var blobURL = URL.createObjectURL(blob);
+			window.open(blobURL);
 		});
 
-		//eliminar el cliente creado
-		// Facturama.Cfdi.Remove(client.Id, function(result){ 
-		// 	console.log("eliminado",result);
-		// });
+		//descargar el XML del cfdi
+		Facturama.Cfdi.Download("xml", "issued", cfdi.Id, function(result){
+			console.log("descarga",result);
 
-		// //obtener todos los clientes
-		// var res = Facturama.Cfdi.List(function(result){ 
-		// 	clientUpdate = result;
-		// 	console.log("todos",result);
-		// });
+			blob = converBase64toBlob(result.Content, 'application/xml');
+
+			var blobURL = URL.createObjectURL(blob);
+			window.open(blobURL);
+		});
+
+
+		// //obtener todos los cfdi con cierto rfc
+		var rfc = "XEXX010101000";
+		var res = Facturama.Cfdi.List("?type=issued&keyword=" + rfc, function(result){ 
+			clientUpdate = result;
+			console.log("todos",result);
+		});
+
+		//eliminar el cfdi creado
+		Facturama.Cfdi.Cancel(cfdi.Id + "?type=issued", function(result){ 
+			console.log("eliminado",result);
+		});
 
 	}, function(error) {
 		if (error && error.responseJSON) {
@@ -104,4 +119,24 @@ function testCRUDCfdi() {
         }
 		
 	});
+}
+
+function converBase64toBlob(content, contentType) {
+	contentType = contentType || '';
+	var sliceSize = 512;
+	var byteCharacters = window.atob(content); //method which converts base64 to binary
+	var byteArrays = [];
+
+	for (var offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+		var slice = byteCharacters.slice(offset, offset + sliceSize);
+		var byteNumbers = new Array(slice.length);
+		for (var i = 0; i < slice.length; i++) {
+	  		byteNumbers[i] = slice.charCodeAt(i);
+		}
+		var byteArray = new Uint8Array(byteNumbers);
+		byteArrays.push(byteArray);
+	}
+
+	var blob = new Blob(byteArrays, {type: contentType}); //statement which creates the blob
+	return blob;
 }
