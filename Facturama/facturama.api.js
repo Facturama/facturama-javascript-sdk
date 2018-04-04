@@ -159,11 +159,17 @@ $.ajaxSetup({
 
             },
             TaxEntity: {
-                List: function (callback) {
+                Get: function (callback) {
                     return list('taxEntity', callback);
                 },
                 Update: function (data, callback, callbackError) {
                     putSyncWithData('taxEntity', data, callback, callbackError);
+                },
+                UploadCsd: function (data, callback, callbackError) {
+                    putSyncWithData('taxEntity/UploadCsd', data, callback, callbackError);
+                },
+                UploadImage: function (data, callback, callbackError) {
+                    putSyncWithData('taxEntity/UploadLogo', data, callback, callbackError);
                 }
             },
             Catalogs: {

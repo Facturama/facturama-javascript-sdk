@@ -40,7 +40,7 @@ function testCRUDBranchOffice() {
 			});
 
 			//obtener todas las sucursales
-			var res = Facturama.BranchOffice.List(function(result){ 
+			Facturama.BranchOffice.List(function(result){ 
 				branchUpdate = result;
 				console.log("todos",result);
 			});

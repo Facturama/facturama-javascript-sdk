@@ -42,7 +42,7 @@ function testCRUDClients() {
 			});
 
 			//obtener todos los clientes
-			var res = Facturama.Clients.List(function(result){ 
+			Facturama.Clients.List(function(result){ 
 				clientUpdate = result;
 				console.log("todos",result);
 			});

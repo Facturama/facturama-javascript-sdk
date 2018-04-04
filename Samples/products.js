@@ -55,7 +55,7 @@ function testCRUDProducts() {
 			});
 
 			//obtener todos los productos
-			var res = Facturama.Products.List(function(result){ 
+			Facturama.Products.List(function(result){ 
 				productUpdate = result;
 				console.log("todos",result);
 			});

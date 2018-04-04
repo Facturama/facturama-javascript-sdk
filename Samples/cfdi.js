@@ -103,7 +103,7 @@ function testCRUDCfdi() {
 
 		// //obtener todos los cfdi con cierto rfc
 		var rfc = "XEXX010101000";
-		var res = Facturama.Cfdi.List("?type=issued&keyword=" + rfc, function(result){ 
+		Facturama.Cfdi.List("?type=issued&keyword=" + rfc, function(result){ 
 			clientUpdate = result;
 			console.log("todos",result);
 		});
