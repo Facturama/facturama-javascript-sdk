@@ -37,22 +37,22 @@ var cfdi = new Cfdi
             Description = "Estudios de viabilidad",
             Unit = "NO APLICA",
             UnitCode = "MTS",
-            UnitPrice = 50.00m,
-            Quantity = 2.00m,
-            Subtotal = 100.00m,
+            UnitPrice = 50.00,
+            Quantity = 2.00,
+            Subtotal = 100.00,
             Taxes = new List<Tax>
             {
                 new Tax
                 {
 
-                    Total = 16.00m,
+                    Total = 16.00,
                     Name = "IVA",
-                    Base = 100.00m,
-                    Rate = 0.160000m,
+                    Base = 100.00,
+                    Rate = 0.160000,
                     IsRetention = false
                 }
             },
-            Total = 116.0m
+            Total = 116.0
         }
     }
 };
