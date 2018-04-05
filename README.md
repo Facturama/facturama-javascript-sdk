@@ -1,5 +1,5 @@
 # Facturama-Javascript-SDK
-Libreria para consumir la API Web de Facturama.
+Librería para consumir la API Web de Facturama.
 
 Basic Usage
 -----------
@@ -11,7 +11,7 @@ Dependencies
 * jQuery http://jquery.com/
 
 ## CFDI 3.3
-Creacion de CFDI 3.3
+Creación de CFDI 3.3
 ```javascript
 var cfdi = new Cfdi
 {
@@ -65,13 +65,13 @@ Facturama.Cfdi.Cancel(cfdi.Id + "?type=issued", function(result){...}, function(
 ```
 Descarga en el formato deseado xml, html ó pdf
 ```javascript
-Facturama.Cfdi.Download("pdf", "issued", cfdi.Id, function(result){...}, function(error) {...});
-Facturama.Cfdi.Download("xml", "issued", cfdi.Id, function(result){...}, function(error) {...});
+Facturama.Cfdi.Download("pdf", "issued", cfdi.Id, function(result){...});
+Facturama.Cfdi.Download("xml", "issued", cfdi.Id, function(result){...});
 ```
 Consulta tus facturas en cualquier momento mediante una palabra clave ó algun atributo en específico
 ```javascript
 var rfc = "XEXX010101000";
-Facturama.Cfdi.List("?type=issued&keyword=" + rfc, function(result){);
+Facturama.Cfdi.List("?type=issued&keyword=" + rfc, function(result){...});
 ```
 
 ## Otras Operaciones
