@@ -1,7 +1,7 @@
 # Facturama-Javascript-SDK
 Librería para consumir la API Web de Facturama.
 
-Uso Basico
+Uso Básico
 -----------
 See https://api.facturama.mx/
 
