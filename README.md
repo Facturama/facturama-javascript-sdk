@@ -18,7 +18,7 @@ Dependencias
 
 Todas las operaciones son reflejadas en la plataforma Web 
 
-[Operaciones API Multiemisor](https://github.com/Facturama/facturama-javascript-sdk/wiki/API-MultiEmisor)
+[Operaciones API MultiEmisor](https://github.com/Facturama/facturama-javascript-sdk/wiki/API-MultiEmisor)
 ------------
 * Crear, Consultar, Cancelar descarga de XML y PDF sin posibilidad de cargar logo. 
 * CRUD de CSD (Certificados de los Sellos Digitales).
