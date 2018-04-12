@@ -67,22 +67,6 @@ function testCRUDCfdiMultiEmisor() {
         cfdi = result;
         console.log("creacion multiemisor",result);
     
-        //enviar el cfdi al cliente
-        var email = "norma@facturama.com.mx";
-        var type = "issuedlite";
-        Facturama.Cfdi.Send("?cfdiType=" + type + "&cfdiId=" + cfdi.Id + "&email=" + email, function(result){ 
-            console.log("envio", result);
-        });
-
-        //descargar el PDF del cfdi
-        Facturama.Cfdi.Download("pdf", "issuedLite", cfdi.Id, function(result){
-            console.log("descarga multiemisor",result);
-
-            var blob = converBase64toBlob(result.Content, 'application/pdf');
-            var blobURL = URL.createObjectURL(blob);
-            window.open(blobURL);
-        });
-
         //descargar el XML del cfdi
         Facturama.Cfdi.Download("xml", "issuedLite", cfdi.Id, function(result){
             console.log("descarga multiemisor",result);
