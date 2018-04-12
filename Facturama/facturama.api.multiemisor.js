@@ -110,6 +110,56 @@ $.ajaxSetup({
                 Remove: function (params, callback, callbackError) {
                     deleteSyncWithParam('api-lite/csds', params, callback, callbackError);
                 }
+            },
+            Catalogs: {
+                States: function (country, callback) {
+                    return list('catalogs/municipalities?countryCode' + country, callback);
+                },
+                Municipalities: function (state, callback) {
+                    return list('catalogs/municipalities?stateCode' + state, callback);
+                },
+                Localities: function (state, callback) {
+                    return list('catalogs/localities?stateCode' + state, callback);
+                },
+                Neighborhoods: function (postalCode, callback) {
+                    return list('catalogs/neighborhoods?postalCode' + postalCode, callback);
+                },
+                ProductsOrServices: function (callback) {
+                    return list('catalogs/ProductsOrServices', callback);
+                },
+                PostalCodes: function (keyword, callback) {
+                    return list('catalogs/PostalCodes?keyword=' + keyword, callback);
+                },
+                Units: function (callback) {
+                    return list('catalogs/Units', callback);
+                },
+                Currencies: function (callback) {
+                    return list('catalogs/Currencies', callback);
+                },
+                Countries: function (callback) {
+                    return list('catalogs/Countries', callback);
+                },
+                PaymentForms: function (callback) {
+                    return list('catalogs/PaymentForms', callback);
+                },
+                PaymentMethods: function (callback) {
+                    return list('catalogs/PaymentMethods', callback);
+                },
+                FederalTaxes: function (callback) {
+                    return list('catalogs/FederalTaxes', callback);
+                },
+                FiscalRegimens: function (callback) {
+                    return list('catalogs/FiscalRegimens', callback);
+                },
+                CfdiTypes: function (callback) {
+                    return list('catalogs/CfdiTypes', callback);
+                },
+                RelationTypes: function (callback) {
+                    return list('catalogs/RelationTypes', callback);
+                },
+                CfdiUses: function (callback) {
+                    return list('catalogs/CfdiUses', callback);
+                }
             }
         };
 
