@@ -134,7 +134,7 @@ $.ajaxSetup({
                     deleteSyncWithParam('serie/' + idBranch, name, callback, callbackError);
                 },
                 Update: function (idBranch, name, data, callback, callbackError) {
-                    putSyncWithData('serie/' + idBranch + '/'+ name, data, callback, callbackError);
+                    putSyncWithData('serie/' + idBranch + '/' + name, data, callback, callbackError);
                 }
             },
             Cfdi: {
@@ -155,8 +155,7 @@ $.ajaxSetup({
                 },
                 Download: function (format, type, id, callback) {
                     retrieve('cfdi/' + format + '/' + type, id, callback);
-                },
-
+                }
             },
             TaxEntity: {
                 Get: function (callback) {
