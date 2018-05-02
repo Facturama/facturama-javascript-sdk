@@ -184,8 +184,8 @@ $.ajaxSetup({
                 Neighborhoods: function (postalCode, callback) {
                     return list('catalogs/neighborhoods?postalCode' + postalCode, callback);
                 },
-                ProductsOrServices: function (callback) {
-                    return list('catalogs/ProductsOrServices', callback);
+                ProductsOrServices: function (keyword, callback) {
+                    return list('catalogs/ProductsOrServices?keyword=' + keyword, callback);
                 },
                 PostalCodes: function (keyword, callback) {
                     return list('catalogs/PostalCodes?keyword=' + keyword, callback);
@@ -217,8 +217,8 @@ $.ajaxSetup({
                 RelationTypes: function (callback) {
                     return list('catalogs/RelationTypes', callback);
                 },
-                CfdiUses: function (callback) {
-                    return list('catalogs/CfdiUses', callback);
+                CfdiUses: function (keyword, callback) {
+                    return list('catalogs/CfdiUses?keyword=' + keyword, callback);
                 }
             }
         };
