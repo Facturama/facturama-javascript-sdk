@@ -155,6 +155,9 @@ $.ajaxSetup({
                 },
                 Download: function (format, type, id, callback) {
                     retrieve('cfdi/' + format + '/' + type, id, callback);
+                },
+                Acuse: function (format, type, id, callback) {
+                    retrieve('acuse/' + format + '/' + type, id, callback);
                 }
             },
             TaxEntity: {
