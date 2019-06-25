@@ -74,7 +74,8 @@ function testCRUDCfdi() {
 		console.log("creacion",result);
     
 	    //enviar el cfdi al cliente
-	    var email = "norma@facturama.com.mx";
+		//var email = "norma@facturama.com.mx";
+		var email = "chucho@facturama.mx";
 	    var type = "issued";
 	    Facturama.Cfdi.Send("?cfdiType=" + type + "&cfdiId=" + cfdi.Id + "&email=" + email, function(result){ 
 			console.log("envio", result);

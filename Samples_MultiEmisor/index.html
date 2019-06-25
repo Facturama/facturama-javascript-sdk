@@ -1,16 +1,117 @@
-﻿<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8" />
-    <title>Ejemplo consumir API MULTIEMISOR Facturama</title>
+﻿<!doctype html>
+<html lang="es-MX">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Ejemplo Facturama API Multiemisor </title>
 
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:300,500">
+        
+
+    <style type="text/css">
+        body{
+            font-family: 'Montserrat', Courier, monospace
+        }
+        a{
+            color: #00bcd4;
+        }
+        .acua{
+            color: #00bcd4 !important;
+        }
+        h2{
+            font-size: 1.6rem;
+        }
+        .btn-primary{
+            background-color: #00bcd4 !important;
+            border-color: #00bcd4 !important;
+            border-radius: 2rem;
+        }
+    </style>
+  </head>
+  <body>
+
+    <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
+        <h5 class="my-0 mr-md-auto font-weight-normal"> <img src="https://api.facturama.mx/Content/img/logo.svg" alt="Facturama Logo"> </h5>
+        <nav class="my-2 my-md-0 mr-md-3">            
+            <a class="p-2  text-dark" href="../Samples/index.html">API Web</a>
+            <a class="p-2 text-dark acua" href="../Samples_MultiEmisor/index.html" >API Multiemisor</a>
+        </nav>        
+    </div>
+
+      <div class="container mb-5">
+    
+        <h1>Ejemplos de API Multiemisor</h1>
+        <div>
+            <p>El API en su modalidad de Multiemisor, permite el timbrado de desde varios RFCs, <br>
+                 siempre y cuando se tengan los Sellos Digitales (CSD) de cada uno de los RFC emisores</p>
+            <p>
+                Conoce más acerca de las modalidades de la API en: <a href="https://apisandbox.facturama.mx/guias" target="_blank">Ver más</a>
+            </p>
+        </div>
+
+        <div class="mt-5"> 
+            <h2>Ejemplo de carga de certificados CSD </h2>     
+
+            <p>
+                La carga de certificados es el primer paso para poder generar CFDIs  <br>
+                <i>No confundir los CSD con la FIEL <a href="https://www.youtube.com/watch?v=2hEW8H6lBbA">Ver diferencias</a></i>                
+            </p>
+            <ul>
+                <li>Listado de todos los certificados</li>
+                <li>Obtener los certificados de RFC específico</li>
+                <li>Eliminar los certificados del RFC</li>
+                <li>Agregar nuevos certificados</li>
+                <li>Actualizar certificados</li>
+            </ul>
+            <!-- Invocacion a la funcion del ejemplo -->
+            <button onclick="testCertificates()" class="btn btn-primary">Carga de certificados</button>
+
+        </div>
+
+
+        <div class="mt-5">
+            <h2>Ejemplo de CRUD de CFDI</h2>                 
+            <ul>
+                <li>Creacion del CFDI</li>
+                <li>Descarga del XML</li>
+                <li>Consulta de CFDIs</li>
+                <li>Cancelar CFDI</li>
+            </ul>
+            <!-- Invocacion a la funcion del ejemplo -->
+            <button onclick="testCRUDCfdiMultiEmisor()" class="btn btn-primary">Creación de CFDI</button>        
+        </div>
+        
+
+        <div class="mt-5">
+            <h2>Ejemplo de Complemento de Pago</h2>                        
+            <ul>
+                <li>Creacion de CFDI Inicial</li>
+                <li>Creación del Complemento de pago para el CFDI Inicial</li>
+                <li>Envío por correo</li>
+            </ul>
+            <!-- Invocacion a la funcion del ejemplo -->
+            <button onclick="testPaymentComplement()" class="btn btn-primary">Complemento de pago</button>        
+        </div>
+        
+
+    </div>
+    
+    
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+
     <script src="../Facturama/facturama.api.multiemisor.js"></script>
     <script src="../Samples_MultiEmisor/cfdi.js"></script>
+    <script src="../Samples_MultiEmisor/complemento_pago.js"></script>
+    
     <script src="../Samples_MultiEmisor/certificates.js"></script>
-</head>
-    <body>
-        <button onclick="testCRUDCfdiMultiEmisor()">TEST CRUD CFDI 33 MULTIEMISOR</button>
-        <button onclick="testCertificates()">TEST CERTIFICADOS</button>
-    </body>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
 </html>
+

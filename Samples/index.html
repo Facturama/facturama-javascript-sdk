@@ -1,22 +1,156 @@
-﻿<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8" />
-    <title>Ejemplo consumir API WEB Facturama</title>
+﻿<!doctype html>
+<html lang="es-MX">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Ejemplo Facturama API Web  </title>
 
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:300,500">
+        
+
+    <style type="text/css">
+        body{
+            font-family: 'Montserrat', Courier, monospace
+        }
+        a{
+            color: #00bcd4;
+        }
+        .acua{
+            color: #00bcd4 !important;
+        }
+        h2{
+            font-size: 1.6rem;
+        }
+        .btn-primary{
+            background-color: #00bcd4 !important;
+            border-color: #00bcd4 !important;
+            border-radius: 2rem;
+        }
+    </style>
+  </head>
+  <body>
+
+    <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
+        <h5 class="my-0 mr-md-auto font-weight-normal"> <img src="https://api.facturama.mx/Content/img/logo.svg" alt="Facturama Logo"> </h5>
+        <nav class="my-2 my-md-0 mr-md-3">            
+            <a class="p-2 text-dark acua" href="../Samples/index.html">API Web</a>
+            <a class="p-2 text-dark" href="../Samples_MultiEmisor/index.html" >API Multiemisor</a>
+        </nav>        
+    </div>
+
+      <div class="container mb-5">
+    
+        <h1>Ejemplos de API Web</h1>
+        <div>
+            <p>El API en su modalidad <strong> Web </strong>, permite el timbrado desde una única <i> Entidad fiscal </i> (un único RFC),  <br>
+                Todos los CFDIs creados en esta modalidad, son visibles y consultables mediante la plataforma web <br>
+                Los datos de la entidad fiscal (Nombre, RFC, Certificado, dirección, etc) se configuran desde la plataforma de Facturama <br>
+                en la sección de <a href="https://apisandbox.facturama.mx/guias/perfil-fiscal">Perfil fiscal</a>.
+                 
+            </p>            
+            <p>
+                Conoce más acerca de las modalidades de la API en: <a href="https://apisandbox.facturama.mx/guias" target="_blank">Ver más</a>
+            </p>
+        </div>
+
+        <div class="mt-5"> 
+                <h2>Ejemplo de datos de la entidad fiscal</h2>            
+                <p>
+                    <i> Los datos de la entidad fiscal también pueden ser modificados en el <a href="https://apisandbox.facturama.mx/guias/perfil-fiscal">Perfil fiscal</a> </i>
+                </p>
+                <!-- Invocacion a la funcion del ejemplo -->
+                <button onclick="testTaxEntity()" class="btn btn-primary">Datos de la entidad</button>                        
+    
+            </div>
+
+        <div class="mt-5"> 
+            <h2>Ejemplo de CRUD de clientes</h2>            
+            <p>
+                Para poder generar un CFDI es necesario que tengas registrado previamente el cliente  <br>
+                <i> Los datos de los clientes, pueden ser modificados también desde la plataforma de Facturama <a href="https://sandbox.facturama.mx/Inventory/Clients">Catálogo de clientes</a> </i>
+            </p>
+            <!-- Invocacion a la funcion del ejemplo -->
+            <button onclick="testCRUDClients()" class="btn btn-primary">Clientes</button>                        
+
+        </div>
+
+
+        <div class="mt-5"> 
+            <h2>Ejemplo de CRUD de productos</h2>            
+            <p>
+                Para poder generar un CFDI es necesario que tengas registrado previamente el producto <br>
+                <i> datos de los productos, pueden ser modificados también desde la plataforma de Facturama <a href="https://sandbox.facturama.mx/Inventory/Products">Catálogo de productos</a> </i>
+            </p>
+            <!-- Invocacion a la funcion del ejemplo -->
+            <button onclick="testCRUDProducts()" class="btn btn-primary">Productos</button>                        
+    
+        </div>
+
+
+
+        <div class="mt-5"> 
+            <h2>Ejemplo de CRUD de lugares de expedición</h2>            
+            <p>
+                Para poder generar un CFDI es necesario que tengas registrado previamente la sucursal desde donde se emite <br>
+                <i> Los lugares de expedición, pueden ser modificados también desde la plataforma de Facturama <a href="https://sandbox.facturama.mx/Profile/BranchOffice">Lugares de expedición</a> </i>
+            </p>
+            <!-- Invocacion a la funcion del ejemplo -->
+            <button onclick="testCRUDBranchOffice()" class="btn btn-primary">Sucursales</button>                        
+    
+        </div>
+
+
+        <div class="mt-5">
+            <h2>Ejemplo de CRUD de CFDI</h2>                 
+            <ul>
+                <li>Creacion del CFDI</li>
+                <li>Descarga del XML</li>
+                <li>Envío por correo</li>
+                <li>Consulta de CFDIs</li>
+                <li>Cancelar CFDI</li>
+            </ul>
+            <!-- Invocacion a la funcion del ejemplo -->
+            <button onclick="testCRUDCfdi()" class="btn btn-primary">Creación de CFDI</button>        
+        </div>
+        
+
+        <div class="mt-5">
+            <h2>Ejemplo de Complemento de Pago</h2>                        
+            <ul>
+                <li>Creacion de CFDI Inicial</li>
+                <li>Creación del Complemento de pago para el CFDI Inicial</li>
+                <li>Envío por correo</li>
+            </ul>
+            <!-- Invocacion a la funcion del ejemplo -->
+            <button onclick="testPaymentComplement()" class="btn btn-primary">Complemento de pago</button>        
+        </div>
+        
+
+    </div>
+
+    
+    
+    
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+
     <script src="../Facturama/facturama.api.js"></script>
     <script src="../Samples/clients.js"></script>
     <script src="../Samples/products.js"></script>
     <script src="../Samples/branchoffice.js"></script>
     <script src="../Samples/cfdi.js"></script>
     <script src="../Samples/taxentity.js"></script>
-</head>
-    <body>
-	    <button onclick="testCRUDClients()">TEST CRUD Cliente</button>
-	    <button onclick="testCRUDProducts()">TEST CRUD Productos</button>
-        <button onclick="testCRUDBranchOffice()">TEST CRUD Sucursales</button>
-        <button onclick="testCRUDCfdi()">TEST CRUD CFDI 33</button>
-        <button onclick="testTaxEntity()">TEST Datos Cuenta</button>
-    </body>
+    <script src="../Samples/complemento_pago.js"></script>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    
+  </body>
 </html>
+
+
+
