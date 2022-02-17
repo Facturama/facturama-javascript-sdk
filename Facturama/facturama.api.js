@@ -145,7 +145,8 @@ $.ajaxSetup({
                     return listWithParam('cfdi', param, callback);
                 },
                 Create: function (data, callback, callbackError) {
-                    postSyncWithData('2/cfdis', data, callback, callbackError);
+                   // postSyncWithData('4/cfdis', data, callback, callbackError); //CFDI 4.0
+                    postSyncWithData('2/cfdis', data, callback, callbackError); //CFDI 3.3
                 },
                 Send: function (param, callback) {
                     postSyncWithParam('cfdi', param, callback);

@@ -84,7 +84,9 @@ function testCRUDCfdiMultiEmisor() {
         });
 
         //cancelar el cfdi creado
-        Facturama.Cfdi.Cancel(cfdi.Id, function(result){ 
+		var _motive="01"; 			//Valores Posibles (01|02|03|04)
+		var _uuidReplacement="null";	//(uuid | null)
+        Facturama.Cfdi.Cancel(cfdi.Id + "?motive=" +_motive + "&uuidReplacement=" +_uuidReplacement , function(result){ 
             console.log("eliminado",result);
         });
 

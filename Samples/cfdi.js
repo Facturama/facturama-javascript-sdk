@@ -68,14 +68,14 @@ function testCRUDCfdi() {
 
 
 	//creacion de un cfdi
-	newCfdi.ExpeditionPlace = "78116";
+	newCfdi.ExpeditionPlace = "78140";
 	Facturama.Cfdi.Create(newCfdi, function(result){ 
 		cfdi = result;
 		console.log("creacion",result);
     
 	    //enviar el cfdi al cliente
-		//var email = "norma@facturama.com.mx";
-		var email = "chucho@facturama.mx";
+		//var email = "chucho@facturama.mx";
+		var email = "ejemplo@ejemplo.com";
 	    var type = "issued";
 	    Facturama.Cfdi.Send("?cfdiType=" + type + "&cfdiId=" + cfdi.Id + "&email=" + email, function(result){ 
 			console.log("envio", result);
@@ -110,7 +110,10 @@ function testCRUDCfdi() {
 		});
 
 		//eliminar el cfdi creado
-		Facturama.Cfdi.Cancel(cfdi.Id + "?type=issued", function(result){ 
+		var _type="issued";			//Valores posibles (issued | payroll)
+		var _motive="01"; 			//Valores Posibles (01|02|03|04)
+		var _uuidReplacement="null";	//(uuid | null)
+		Facturama.Cfdi.Cancel(cfdi.Id + "?type=" + _type + "&motive=" + _motive + "&uuidReplacement=" +_uuidReplacement , function(result){ 
 			console.log("eliminado",result);
 		});
 
