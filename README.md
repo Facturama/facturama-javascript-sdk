@@ -1,5 +1,6 @@
 # Facturama-Javascript-SDK
 Libreria para consumir la API Web y API Multiemisor de Facturama.
+[NOTE] This document is also available in English
 
 Uso Básico
 -----------
@@ -28,3 +29,4 @@ Algunos ejemplos: [aquí](https://github.com/Facturama/facturama-javascript-sdk/
 Algunos ejemplos: [aquí](https://github.com/Facturama/facturama-javascript-sdk/wiki/API-MultiEmisor)
 
 *Las operaciones no se reflejan en la plataforma web.*
+[English]: ./README-en.md
