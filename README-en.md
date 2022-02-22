@@ -34,9 +34,6 @@ Some examples: [here](https://github.com/Facturama/facturama-javascript-sdk/wiki
 
 With this client you can start to work, in this step you're ready to make API calls on behalf of the user.
 
-## Examples
-Don't forget to check out our examples codes in the  [examples] directory
-
 ## I want to contribute!
 That is great! Just fork the project in GitHub, create a topic branch, write some code, and add some tests for your new code.
 
