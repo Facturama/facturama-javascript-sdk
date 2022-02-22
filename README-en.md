@@ -1,6 +1,6 @@
 # Facturama-Javascript-SDK
 
-[NOTE] This document is also available in [Spanish]
+[NOTA] Este documento esta disponble en [Español]
 
 Library to consume the Web API and Multiissuer API of Facturama.
 
@@ -45,7 +45,7 @@ Thanks for helping!
 ## Contributing:
 [phansys](https://github.com/phansys)
 
-[Spanish]: ./README.md
+[Español]: ./README.md
 
     © 2022 GitHub, Inc.
 
