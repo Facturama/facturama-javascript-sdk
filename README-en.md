@@ -39,12 +39,4 @@ That is great! Just fork the project in GitHub, create a topic branch, write som
 
 Thanks for helping!
 
-## Contributing:
-[phansys](https://github.com/phansys)
-
 [Español]: ./README.md
-
-    © 2022 GitHub, Inc.
-
-    Terms
-    Privacy
