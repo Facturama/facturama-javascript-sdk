@@ -1,4 +1,4 @@
-# Facturama-Javascript-SDK
+# Facturama Javascript SDK
 
 [NOTA] Este documento esta disponble en [Español]
 
