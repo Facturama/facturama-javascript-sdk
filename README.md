@@ -2,7 +2,7 @@
 
 [NOTE] This document is also available in [English]
 
-Libreria para consumir la API Web y API Multiemisor de Facturama.
+Libreria para consumir la API Web y API Multiemisor de [Facturama](https://api.facturama.mx/).
 
 Uso Básico
 -----------
