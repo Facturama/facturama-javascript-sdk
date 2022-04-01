@@ -82,6 +82,7 @@ $.ajaxSetup({
                     return listWithParam('api-lite/cfdis', param, callback);
                 },
                 Create: function (data, callback, callbackError) {
+                    //postSyncWithData('api-lite/4/cfdis', data, callback, callbackError); //cfdi 4.0
                     postSyncWithData('api-lite/2/cfdis', data, callback, callbackError);
                 },
                 Send: function (param, callback) {
