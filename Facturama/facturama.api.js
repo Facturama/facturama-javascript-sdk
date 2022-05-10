@@ -1,5 +1,11 @@
+/*
+Soporte API Facturama
+	chucho@facturama.mx
+	rafael@facturama.mx
+*/
+
 var valuesFacturama = {
-    token: "cHJ1ZWJhczpwcnVlYmFzMjAxMQ==",
+    token: "cHJ1ZWJhczpwcnVlYmFzMjAxMQ==", // usuario: pruebas, Contraseña: pruebas2011   
     url: "https://apisandbox.facturama.mx/"
 };
 

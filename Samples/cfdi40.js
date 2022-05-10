@@ -1,5 +1,5 @@
 var newCfdi = {
-    "Serie": "B",
+    "Serie": "R",
     "Currency": "MXN",
     "ExpeditionPlace": "99999",
     "PaymentConditions": "CREDITO A SIETE DIAS",
@@ -51,13 +51,64 @@ var newCfdi = {
     }]
 };
 
+var newCfdi3 = {
+    "Serie": "B",
+    "Currency": "MXN",
+    "ExpeditionPlace": "78140",
+    "PaymentConditions": "CREDITO A SIETE DIAS",
+    "CfdiType": "I",
+    "PaymentForm": "03",
+    "PaymentMethod": "PUE",
+    "Receiver": {
+        "Rfc": "EKU9003173C9",
+        "Name": "ESCUELA KEMPER URGATE",
+        "CfdiUse": "P01",
+        "FiscalRegime": "603", 	// Nuevos elementos para CFDi 4.0
+        "TaxZipCode": "26015"	// Nuevos elementos para CFDi 4.0
+    },
+    "Items": [
+    {
+        "ProductCode": "10101504",
+        "IdentificationNumber": "EDL",
+        "Description": "Estudios de viabilidad",
+        "Unit": "NO APLICA",
+        "UnitCode": "MTS",
+        "UnitPrice": 50.0,
+        "Quantity": 2.0,
+        "Subtotal": 100.0,
+		"TaxObject": "02",  	// Nuevos elementos para CFDi 4.0
+        "Taxes": [{
+            "Total": 16.0,
+            "Name": "IVA",
+            "Base": 100.0,
+            "Rate": 0.16,
+            "IsRetention": false
+        }],
+        "Total": 116.0
+    },
+    {
+        "ProductCode": "10101504",
+        "IdentificationNumber": "001",
+        "Description": "SERVICIO DE COLOCACION",
+        "Unit": "NO APLICA",
+        "UnitCode": "E49",
+        "UnitPrice": 100.0,
+        "Quantity": 15.0,
+        "Subtotal": 1500.0,
+        "Discount": 0.0,
+		"TaxObject":"01",        
+        "Total": 1500.0
+    }
+]
+};
+
+
 var clientUpdate;
 
-function testCRUDCfdi() {
+function testCRUDCfdi40() {
 	var cfdi;
 	//creacion de un CFDI con error
-	/*
-	Facturama.Cfdi.Create(newCfdi, function(result){ 
+	Facturama.Cfdi.Create3(newCfdi, function(result){ 
 		cfdi = result;
 		console.log("creacion",result);
     
@@ -65,13 +116,14 @@ function testCRUDCfdi() {
 		if (error && error.responseJSON) {
             console.log("errores", error.responseJSON);
         }		
-	});*/
+	});
 
 
-	//creacion de un cfdi
-	newCfdi.ExpeditionPlace = "78140";
-	Facturama.Cfdi.Create(newCfdi, function(result){ 
+	//creación de un cfdi 4.0
+	Facturama.Cfdi.Create3(newCfdi3, function(result)
+	{ 
 		cfdi = result;
+		Cfdi_Id=cfdi.Id;
 		console.log("creacion",result);
     
 	    //enviar el cfdi al cliente
@@ -101,6 +153,13 @@ function testCRUDCfdi() {
 			window.open(blobURL);
 		});
 
+		//eliminar el cfdi creado
+		var _type="issued";			//Valores posibles (issued | payroll)
+		var _motive="02"; 			//Valores Posibles (01|02|03|04)
+		var _uuidReplacement="null";	//(uuid | null)
+		Facturama.Cfdi.Cancel(Cfdi_Id + "?type=" + _type + "&motive=" + _motive + "&uuidReplacement=" +_uuidReplacement , function(result){ 
+			console.log("eliminado",result);
+		});
 
 		// //obtener todos los cfdi con cierto rfc
 		var rfc = "EKU9003173C9";
@@ -109,13 +168,7 @@ function testCRUDCfdi() {
 			console.log("todos",result);
 		});
 
-		//eliminar el cfdi creado
-		var _type="issued";			//Valores posibles (issued | payroll)
-		var _motive="02"; 			//Valores Posibles (01|02|03|04)
-		var _uuidReplacement="null";	//(uuid | null)
-		Facturama.Cfdi.Cancel(cfdi.Id + "?type=" + _type + "&motive=" + _motive + "&uuidReplacement=" +_uuidReplacement , function(result){ 
-			console.log("eliminado",result);
-		});
+		
 
 	}, function(error) {
 		if (error && error.responseJSON) {
