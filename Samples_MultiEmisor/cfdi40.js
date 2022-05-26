@@ -30,7 +30,7 @@ var newCfdi = {
         "UnitPrice": 50.0,
         "Quantity": 2.0,
         "Subtotal": 100.0,
-        "taxObject": "02",
+        "TaxObject": "02",
         "Taxes": [{
             "Total": 16.0,
             "Name": "IVA",

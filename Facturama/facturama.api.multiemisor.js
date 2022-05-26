@@ -88,7 +88,7 @@ $.ajaxSetup({
                     return listWithParam('api-lite/cfdis', param, callback);
                 },
                 Create: function (data, callback, callbackError) {
-                    //postSyncWithData('api-lite/3/cfdis', data, callback, callbackError); //cfdi 4.0 disponible 1/07/2022
+                    //postSyncWithData('api-lite/3/cfdis', data, callback, callbackError); //cfdi 4.0 metodo disponible 1/07/2022
                     postSyncWithData('api-lite/2/cfdis', data, callback, callbackError);
                 },
                 
