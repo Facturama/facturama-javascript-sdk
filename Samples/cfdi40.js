@@ -1,15 +1,17 @@
-var newCfdi = {
+var newCfdi40= {
     "Serie": "B",
     "Currency": "MXN",
-    "ExpeditionPlace": "99999",
+    "ExpeditionPlace": "78140",
     "PaymentConditions": "CREDITO A SIETE DIAS",
     "CfdiType": "I",
     "PaymentForm": "03",
     "PaymentMethod": "PUE",
     "Receiver": {
-        "Rfc": "XAXX010101000",
-        "Name": "RADIAL SOFTWARE SOLUTIONS",
-        "CfdiUse": "P01"
+        "Rfc": "EKU9003173C9",
+        "Name": "ESCUELA KEMPER URGATE",
+        "CfdiUse": "G01",
+        "FiscalRegime": "603", 	// Nuevos elementos para CFDi 4.0
+        "TaxZipCode": "26015"	// Nuevos elementos para CFDi 4.0
     },
     "Items": [
     {
@@ -21,6 +23,7 @@ var newCfdi = {
         "UnitPrice": 50.0,
         "Quantity": 2.0,
         "Subtotal": 100.0,
+		"TaxObject": "02",  	// Nuevos elementos para CFDi 4.0
         "Taxes": [{
             "Total": 16.0,
             "Name": "IVA",
@@ -40,50 +43,30 @@ var newCfdi = {
         "Quantity": 15.0,
         "Subtotal": 1500.0,
         "Discount": 0.0,
-        "Taxes": [{
-            "Total": 240.0,
-            "Name": "IVA",
-            "Base": 1500.0,
-            "Rate": 0.16,
-            "IsRetention": false
-        }],
-        "Total": 1740.0
-    }]
+		"TaxObject":"01",        
+        "Total": 1500.0
+    }
+
+]
 };
+
 
 var clientUpdate;
 
-function testCRUDCfdi() {
+function testCRUDCfdi40() {
 	var cfdi;
-	//creacion de un CFDI con error
-	/*
-	Facturama.Cfdi.Create(newCfdi, function(result){ 
+	
+	//creación de un cfdi 4.0
+	Facturama.Cfdi.Create3(newCfdi40, function(result)
+	{ 
 		cfdi = result;
-		console.log("creacion",result);
+		Cfdi_Id=cfdi.Id;
+		console.log("Creación",result);
     
-	}, function(error) {
-		if (error && error.responseJSON) {
-            console.log("errores", error.responseJSON);
-        }		
-	});*/
-
-
-	//creacion de un cfdi
-	newCfdi.ExpeditionPlace = "78140";
-	Facturama.Cfdi.Create(newCfdi, function(result){ 
-		cfdi = result;
-		console.log("creacion",result);
-    
-	    //enviar el cfdi al cliente
-		var email = "ejemplo@ejemplo.com";
-	    var type = "issued";
-	    Facturama.Cfdi.Send("?cfdiType=" + type + "&cfdiId=" + cfdi.Id + "&email=" + email, function(result){ 
-			console.log("envio", result);
-		});
 
 		//descargar el PDF del cfdi
 		Facturama.Cfdi.Download("pdf", "issued", cfdi.Id, function(result){
-			console.log("descarga",result);
+			console.log("Descarga",result);
 
 			blob = converBase64toBlob(result.Content, 'application/pdf');
 
@@ -93,7 +76,7 @@ function testCRUDCfdi() {
 
 		//descargar el XML del cfdi
 		Facturama.Cfdi.Download("xml", "issued", cfdi.Id, function(result){
-			console.log("descarga",result);
+			console.log("Descarga",result);
 
 			blob = converBase64toBlob(result.Content, 'application/xml');
 
@@ -101,6 +84,13 @@ function testCRUDCfdi() {
 			window.open(blobURL);
 		});
 
+		//eliminar el cfdi creado
+		var _type="issued";			//Valores posibles (issued | payroll)
+		var _motive="02"; 			//Valores Posibles (01|02|03|04)
+		var _uuidReplacement="null";	//(uuid | null)
+		Facturama.Cfdi.Cancel(Cfdi_Id + "?type=" + _type + "&motive=" + _motive + "&uuidReplacement=" +_uuidReplacement , function(result){ 
+			console.log("Eliminado",result);
+		});
 
 		// //obtener todos los cfdi con cierto rfc
 		var rfc = "EKU9003173C9";
@@ -109,13 +99,15 @@ function testCRUDCfdi() {
 			console.log("todos",result);
 		});
 
-		//eliminar el cfdi creado
-		var _type="issued";			//Valores posibles (issued | payroll)
-		var _motive="02"; 			//Valores Posibles (01|02|03|04)
-		var _uuidReplacement="null";	//(uuid | null)
-		Facturama.Cfdi.Cancel(cfdi.Id + "?type=" + _type + "&motive=" + _motive + "&uuidReplacement=" +_uuidReplacement , function(result){ 
-			console.log("eliminado",result);
+        //enviar el cfdi al cliente
+		var email = "ejemplo@ejemplo.mx";
+	    var type = "issued";
+        //console.log("Id del la factura: ",Cfdi_Id);
+	    Facturama.Cfdi.Send("?cfdiType=" + type + "&cfdiId=" + Cfdi_Id + "&email=" + email, function(result){ 
+			console.log("envio", result);
 		});
+
+		
 
 	}, function(error) {
 		if (error && error.responseJSON) {

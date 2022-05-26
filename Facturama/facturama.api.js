@@ -1,5 +1,11 @@
+/*
+Soporte API Facturama
+	chucho@facturama.mx
+	rafael@facturama.mx
+*/
+
 var valuesFacturama = {
-    token: "cHJ1ZWJhczpwcnVlYmFzMjAxMQ==",
+    token: "cHJ1ZWJhczpwcnVlYmFzMjAxMQ==", // usuario: pruebas, Contraseña: pruebas2011   
     url: "https://apisandbox.facturama.mx/"
 };
 
@@ -145,10 +151,11 @@ $.ajaxSetup({
                     return listWithParam('cfdi', param, callback);
                 },
                 Create: function (data, callback, callbackError) {
-                    postSyncWithData('2/cfdis', data, callback, callbackError); //CFDI 3.3  
+                    postSyncWithData('2/cfdis', data, callback, callbackError); //CFDI 3.3  vigente hasta el 30 de Junio 2022
+                    //postSyncWithData('3/cfdis', data, callback, callbackError);// Disponible 1 Julio 2022
                 },
                 Create3: function (data, callback, callbackError) {
-                    postSyncWithData('3/cfdis', data, callback, callbackError); //Metodo de pruebas para CFDI 4.0
+                    postSyncWithData('3/cfdis', data, callback, callbackError); //Metodo de pruebas para CFDI 4.0  
                 },
                 Send: function (param, callback) {
                     postSyncWithParam('cfdi', param, callback);
