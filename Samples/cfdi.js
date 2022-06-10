@@ -56,7 +56,7 @@ var clientUpdate;
 function testCRUDCfdi() {
 	var cfdi;
 	//creacion de un CFDI con error
-	/*
+	
 	Facturama.Cfdi.Create(newCfdi, function(result){ 
 		cfdi = result;
 		console.log("creacion",result);
@@ -65,7 +65,7 @@ function testCRUDCfdi() {
 		if (error && error.responseJSON) {
             console.log("errores", error.responseJSON);
         }		
-	});*/
+	});
 
 
 	//creacion de un cfdi
