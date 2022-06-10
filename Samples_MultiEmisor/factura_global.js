@@ -1,19 +1,30 @@
-var newCfdi40= 
+var newCfdi= 
 {
-    "Serie": "B",
+    "Serie": "C",
+	"Folio": "300",
     "Currency": "MXN",
     "ExpeditionPlace": "00000",
     "PaymentConditions": "CREDITO A SIETE DIAS",
     "CfdiType": "I",
     "PaymentForm": "03",
     "PaymentMethod": "PUE",
+	"GlobalInformation": {
+        "Periodicity": "04",
+        "Months": "04",
+        "Year": "2022"
+    },
+	"Issuer":{
+        "Rfc": "EKU9003173C9",
+        "Name": "ESCUELA KEMPER URGATE",
+        "FiscalRegime": "601"        
+    },
 	"Receiver": 
     {
-        "Rfc": "ZUÑ920208KL4",
-        "Name": "ZAPATERIA URTADO ÑERI",
-        "CfdiUse": "G03",
-        "FiscalRegime": "601",
-        "TaxZipCode": "77060"
+        "Rfc": "XAXX010101000",
+        "Name": "PUBLICO EN GENERAL",
+        "CfdiUse": "S01",
+        "FiscalRegime": "616",
+        "TaxZipCode": "78000"
     },
     "Items": 
 	[{
@@ -55,11 +66,11 @@ var newCfdi40=
 
 var clientUpdate;
 
-function testCRUDCfdi40() {
+function testfactura_global() {
 	var cfdi;
 
-	//creación de un cfdi 4.0 con errores
-	Facturama.Cfdi.Create(newCfdi, function(result){ 
+	//creación de un cfdi 4.0 FacturaGlobal
+	Facturama.Cfdi.Create3(newCfdi, function(result){ 
 		cfdi = result;
 		console.log("creacion",result);
     
@@ -70,58 +81,29 @@ function testCRUDCfdi40() {
 	});
 	
 	//creación de un cfdi 4.0
-	newCfdi40.ExpeditionPlace = "78140";
-	Facturama.Cfdi.Create3(newCfdi40, function(result)
+	newCfdi.ExpeditionPlace = "78000";
+	Facturama.Cfdi.Create3(newCfdi, function(result)
 	{ 
 		cfdi = result;
 		Cfdi_Id=cfdi.Id;
 		console.log("Creación",result);
     
-
-		//descargar el PDF del cfdi
-		Facturama.Cfdi.Download("pdf", "issued", Cfdi_Id, function(result){
-			console.log("Descarga",result);
-
-			blob = converBase64toBlob(result.Content, 'application/pdf');
-
-			var blobURL = URL.createObjectURL(blob);
-			window.open(blobURL);
-		});
-
-		//descargar el XML del cfdi
-		Facturama.Cfdi.Download("xml", "issued", Cfdi_Id, function(result){
-			console.log("Descarga",result);
-
-			blob = converBase64toBlob(result.Content, 'application/xml');
-
-			var blobURL = URL.createObjectURL(blob);
-			window.open(blobURL);
-		});
-
-		//eliminar el cfdi creado
-		var _type="issued";			//Valores posibles (issued | payroll)
-		var _motive="02"; 			//Valores Posibles (01|02|03|04)
-		var _uuidReplacement="null";	//(uuid | null)
-		Facturama.Cfdi.Cancel(Cfdi_Id + "?type=" + _type + "&motive=" + _motive + "&uuidReplacement=" +_uuidReplacement , function(result){ 
-			console.log("Eliminado",result);
-		});
-
-		// //obtener todos los cfdi con cierto rfc
-		var rfc = "EKU9003173C9";
-		Facturama.Cfdi.List("?type=issued&keyword=" + rfc, function(result){ 
-			clientUpdate = result;
-			console.log("todos",result);
-		});
-
+	
         //enviar el cfdi al cliente
 		var email = "ejemplo@ejemplo.mx";
-	    var type = "issued";
+	    var type = "issuedLite";
         //console.log("Id del la factura: ",Cfdi_Id);
 	    Facturama.Cfdi.Send("?cfdiType=" + type + "&cfdiId=" + Cfdi_Id + "&email=" + email, function(result){ 
 			console.log("envio", result);
 		});
 
-		
+		//eliminar el cfdi creado
+		var _type="issuedLite";			//Valores posibles (issued | payroll)
+		var _motive="02"; 			//Valores Posibles (01|02|03|04)
+		var _uuidReplacement="null";	//(uuid | null)
+		Facturama.Cfdi.Cancel(Cfdi_Id + "?type=" + _type + "&motive=" + _motive + "&uuidReplacement=" +_uuidReplacement , function(result){ 
+			console.log("Eliminado",result);
+		});		
 
 	}, function(error) {
 		if (error && error.responseJSON) {
