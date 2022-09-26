@@ -6,6 +6,8 @@ Soporte API Facturama
 
 var valuesFacturama = {
     //token: "cHJ1ZWJhczpwcnVlYmFzMjAxMQ==", // usuario: pruebas, Contraseña: pruebas2011 
+    token: "c2RrcHJ1ZWJhczpwcnVlYmFzMjAyMg==",
+
     url: "https://apisandbox.facturama.mx/"
 };
 

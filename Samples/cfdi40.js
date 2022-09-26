@@ -1,6 +1,6 @@
 var newCfdi40= 
 {
-    "Serie": "B",
+    "Serie": "AB",
     "Currency": "MXN",
     "ExpeditionPlace": "00000",
     "PaymentConditions": "CREDITO A SIETE DIAS",
@@ -11,7 +11,7 @@ var newCfdi40=
     {
         "Rfc": "ZUÑ920208KL4",
         "Name": "ZAPATERIA URTADO ÑERI",
-        "CfdiUse": "G03",
+        "CfdiUse": "G01",
         "FiscalRegime": "601",
         "TaxZipCode": "77060"
     },
@@ -59,6 +59,7 @@ function testCRUDCfdi40() {
 	var cfdi;
 
 	//creación de un cfdi 4.0 con errores
+	/*
 	Facturama.Cfdi.Create(newCfdi, function(result){ 
 		cfdi = result;
 		console.log("creacion",result);
@@ -67,7 +68,7 @@ function testCRUDCfdi40() {
 		if (error && error.responseJSON) {
             console.log("Errores", error.responseJSON);
         }		
-	});
+	});*/
 	
 	//creación de un cfdi 4.0
 	newCfdi40.ExpeditionPlace = "78140";
