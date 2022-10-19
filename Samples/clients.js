@@ -74,6 +74,11 @@ function testCRUDClients() {
 			function (error) {
 				console.log("Código de respuesta: " + error.status);
 				console.log("Mensaje: " + error.messege);
+			}); 
+
+			Facturama.Clients.List(function (result) {
+				clientUpdate = result;
+				console.log("todos", result);
 			});
 
 	}
@@ -82,5 +87,24 @@ function testCRUDClients() {
 	}
 
 
+
+}
+
+function testListClients()
+{
+
+		var search= "XAXX010101000";
+		var start=0;
+		var length=100;
+		Facturama.Clients.List2("start="+start+"&lenght="+length +"&search="+search,function (result) {
+			console.log(result);
+			console.log(Object.values(result.data)[0].Id);
+			console.log(Object.values(result.data)[0].Rfc);
+			console.log(Object.values(result.data)[0].Name);
+			console.log(Object.values(result.data)[0].Address);
+			console.log(Object.values(result.data)[0].CfdiUse);
+			console.log(Object.values(result.data)[0].Email);
+			console.log(Object.values(result.data)[0].FiscalRegime); 
+		}); 
 
 }

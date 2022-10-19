@@ -77,6 +77,24 @@
 
         </div>
 
+        <div class="mt-5"> 
+            <h2>Listar clientes</h2>            
+            <p>Parametros utlizados:<br>
+            <p>
+                <ul>
+                    <li>start - Indice del registro - Valores permitidos de tipo int(0 .. n &#60; = 100) </li>
+                    <li>lenght - tamaño de registro mostrado - Valores permitidos de tipo int(1 .. 100)</li>
+                    <li>search - Valores permitidos de tipo string()</li>
+                </Ul>
+                start = 0 & length = 100 & search = null
+                </p>
+                <i> Los datos de los clientes, pueden ser modificados también desde la plataforma de Facturama <a href="https://sandbox.facturama.mx/Inventory/Clients">Catálogo de clientes</a> </i>
+            </p>
+            <!-- Invocacion a la funcion del ejemplo -->
+            <button onclick="testListClients()" class="btn btn-primary">Listar Clientes</button>                        
+
+        </div>
+
 
         <div class="mt-5"> 
             <h2>Ejemplo de CRUD de productos</h2>            
@@ -87,6 +105,24 @@
             <!-- Invocacion a la funcion del ejemplo -->
             <button onclick="testCRUDProducts()" class="btn btn-primary">Productos</button>                        
     
+        </div>
+
+        <div class="mt-5"> 
+            <h2>Listar productos</h2>            
+            <p>Parametros utlizados:<br>
+            <p>
+                <ul>
+                    <li>start - Indice del registro - Valores permitidos de tipo int(0 .. n &#60; = 100) </li>
+                    <li>lenght - tamaño de registro mostrado - Valores permitidos de tipo int(1 .. 100)</li>
+                    <li>search - Valores permitidos de tipo string()</li>
+                </Ul>
+                start = 0 & length = 100 & search = null
+                </p>
+                <i> datos de los productos, pueden ser modificados también desde la plataforma de Facturama <a href="https://sandbox.facturama.mx/Inventory/Products">Catálogo de productos</a> </i>
+            </p>
+            <!-- Invocacion a la funcion del ejemplo -->
+            <button onclick="testListProduct()" class="btn btn-primary">Listar Productos</button>                        
+
         </div>
 
 

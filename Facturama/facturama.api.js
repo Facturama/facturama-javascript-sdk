@@ -1,13 +1,10 @@
 /*
 Soporte API Facturama
-	chucho@facturama.mx
-	rafael@facturama.mx
+    soporte-api@facturama.mx
 */
 
 var valuesFacturama = {
-    //token: "cHJ1ZWJhczpwcnVlYmFzMjAxMQ==", // usuario: pruebas, Contraseña: pruebas2011 
-    token: "c2RrcHJ1ZWJhczpwcnVlYmFzMjAyMg==",
-
+    token: "cHJ1ZWJhczpwcnVlYmFzMjAxMQ==", // usuario: pruebas, Contraseña: pruebas2011 
     url: "https://apisandbox.facturama.mx/"
 };
 
@@ -87,6 +84,9 @@ $.ajaxSetup({
                 List: function (callback) {
                     return list('client', callback);
                 },
+                List2: function (data, callback) {
+                    return list('clients?' + data, callback);
+                },
                 Create: function (data, callback, callbackError) {
                     postSyncWithData('client', data, callback, callbackError);
                 },
@@ -103,6 +103,9 @@ $.ajaxSetup({
                 },
                 List: function (callback) {
                     return list('product', callback);
+                },
+                List2: function (data, callback) {
+                    return list('products?' + data, callback);
                 },
                 Create: function (data, callback, callbackError) {
                     postSyncWithData('product', data, callback, callbackError);
@@ -153,11 +156,10 @@ $.ajaxSetup({
                     return listWithParam('cfdi', param, callback);
                 },
                 Create: function (data, callback, callbackError) {
-                    postSyncWithData('2/cfdis', data, callback, callbackError); //CFDI 3.3  vigente hasta el 30 de Junio 2022
-                    //postSyncWithData('3/cfdis', data, callback, callbackError);// Disponible 1 Julio 2022
+                    postSyncWithData('2/cfdis', data, callback, callbackError); //CFDI 3.3 
                 },
                 Create3: function (data, callback, callbackError) {
-                    postSyncWithData('3/cfdis', data, callback, callbackError); //Metodo de pruebas para CFDI 4.0  
+                    postSyncWithData('3/cfdis', data, callback, callbackError); //CFDI 4.0  
                 },
                 Send: function (param, callback) {
                     postSyncWithParam('cfdi', param, callback);

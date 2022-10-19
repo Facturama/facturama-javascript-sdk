@@ -1,7 +1,6 @@
 /*
 Soporte API Facturama
-	chucho@facturama.mx
-	rafael@facturama.mx
+    soporte-api@facturama.mx
 */
 
 var valuesFacturama = {
@@ -88,12 +87,10 @@ $.ajaxSetup({
                     return listWithParam('api-lite/cfdis', param, callback);
                 },
                 Create: function (data, callback, callbackError) {
-                    //postSyncWithData('api-lite/3/cfdis', data, callback, callbackError); //cfdi 4.0 metodo disponible 1/07/2022
                     postSyncWithData('api-lite/2/cfdis', data, callback, callbackError);
                 },
                 
                 Create3: function (data, callback, callbackError) {
-                    // Método de pruebas para CFDI 4.0, vigente hasta 30/06/2022
                     postSyncWithData('api-lite/3/cfdis', data, callback, callbackError);
                 },
                 Send: function (param, callback) {
