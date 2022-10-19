@@ -90,6 +90,17 @@ function testCRUDCfdiMultiEmisor() {
             console.log("eliminado",result);
         });
 
+      //enviar el cfdi al cliente con correo alternativo
+        var email = "Correo_destinatario@ejemplo.com";
+        var type = "issuedLite";
+        var subject = "";
+        var comments = "";
+        var issuerEmail = "correo_cliente_emisor@ejemplo.com";
+        Facturama.Cfdi.Send("?cfdiType=" + type + "&cfdiId=" + cfdi.Id + "&email=" + email + "&subject=" + subject + "&comments=" + comments + "&issuerEmail=" + issuerEmail,function (result) 
+        {
+            console.log("envio", result);
+        });
+
   	}, function(error) {
         if (error && error.responseJSON) {
             console.log("errores", error.responseJSON);
