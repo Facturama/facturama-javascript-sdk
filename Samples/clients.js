@@ -98,13 +98,21 @@ function testListClients()
 		var length=100;
 		Facturama.Clients.List2("start="+start+"&lenght="+length +"&search="+search,function (result) {
 			console.log(result);
+			console.log(result.recordsTotal);
+			console.log(result.recordsFiltered);
+
+			console.log(Object.values(result.data));
+			console.log(Object.values(result.data).length)
+			console.log(Object.values(result.data).forEach(element=> console.log(element)));
+		
+
 			console.log(Object.values(result.data)[0].Id);
 			console.log(Object.values(result.data)[0].Rfc);
 			console.log(Object.values(result.data)[0].Name);
 			console.log(Object.values(result.data)[0].Address);
 			console.log(Object.values(result.data)[0].CfdiUse);
 			console.log(Object.values(result.data)[0].Email);
-			console.log(Object.values(result.data)[0].FiscalRegime); 
+			console.log(Object.values(result.data)[0].FiscalRegime);  
 		}); 
 
 }
