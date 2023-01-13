@@ -17,8 +17,8 @@ var newCfdi = {
         "Rfc": "EKU9003173C9",
         "Name": "ESCUELA KEMPER URGATE",
         "CfdiUse": "P01",
-        "FiscalRegime": "603", 	// Nuevos elementos para CFDi 4.0
-        "TaxZipCode": "26015"	// Nuevos elementos para CFDi 4.0
+        "FiscalRegime": "603", 	
+        "TaxZipCode": "26015"	
     },
     "Items": [
     {
