@@ -126,7 +126,7 @@ function testPaymentComplement20() {
         console.log("Creacion de cfdi inicial",result);
     
         //enviar el cfdi al cliente		
-		var email = "prueba@ejemplo.mx";
+		var email = "test@test.mx";
 	    var type = "issued";            // Las emitidas en Multiemisor son: issuedLite
 	    Facturama.Cfdi.Send("?cfdiType=" + type + "&cfdiId=" + cfdi.Id + "&email=" + email, function(result){ 
 			console.log("envio", result);
@@ -141,7 +141,7 @@ function testPaymentComplement20() {
             console.log("creacion de complemento de pago: ",complemento);
         
             //enviar el complemento de pago al cliente            
-            var email = "prueba@ejemplo.mx";
+            var email = "test@test.mx";
             var type = "issued";            // Las emitidas en Multiemisor son: issuedLite
             Facturama.Cfdi.Send("?cfdiType=" + type + "&cfdiId=" + complemento.Id + "&email=" + email, function(result){ 
                 console.log("envio", result);

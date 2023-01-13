@@ -60,7 +60,8 @@ var newCfdi = {
 
 var clientUpdate;
 
-function testCRUDCfdi() {
+function testCRUDCfdi() 
+{
   var cfdi;
   //creacion de un CFDI con error
 

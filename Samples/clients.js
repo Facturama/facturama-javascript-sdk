@@ -4,7 +4,7 @@ var newClient =
 	"Rfc": "URE180429TM6",
 	"Name": "UNIVERSIDAD ROBOTICA ESPAÑOLA",
 	"FiscalRegime": "601",
-	"Email": "pruebas@facturama.mx",
+	"Email": "test_email@test.mx",
 	"CfdiUse": "G03",
 	"TaxResidence": "65000",
 	"NumRegIdTrib": "131494-1055",
@@ -21,7 +21,6 @@ var newClient =
 		"State": "NUEVO LEON",
 		"Country": "Mex"
 	},
-
 };
 
 var clientUpdate;
@@ -31,63 +30,65 @@ function testCRUDClients() {
 
 	try {
 
-		//creacion de un cliente
-		Facturama.Clients.Create(newClient, function (result, textStatus, status) {
+		//Creación de un cliente
+		Facturama.Clients.Create(newClient, function (result, textStatus, status)
+		{
 			client = result;
 			console.log("Creación =>", result);
 			console.log("Estado =>", status.status);
 
-			//editar el cliente
+			//Editar el cliente
 			client.Rfc = "URE180429TM6";
-			client.Email = "Ejemplo_de_cambio@gmail.com"
-			Facturama.Clients.Update(client.Id, client, function (result, textStatus, status) {
+			client.Email = "update_email@test.com";
+			Facturama.Clients.Update(client.Id, client, function (result, textStatus, status)
+			{
 				console.log("Edición", result);
-				if (status.status == 204) {
-					alert("Datos Actualizados");
-				}
+				if (status.status == 204){alert("Datos Actualizados");}
 				console.log("Estado =>", status.status);
 
-				//obtener el cliente editado
-				Facturama.Clients.Get(client.Id, function (result, textStatus, status) {
+				//Obtener el cliente editado
+				Facturama.Clients.Get(client.Id, function (result, textStatus, status) 
+				{
 					client = result;
 					console.log("Obtener", result);
 					console.log("Estado =>", status.status);
 
-					//eliminar el cliente creado
-					Facturama.Clients.Remove(client.Id, function (rresult, textStatus, status) {
+					//Eliminar el cliente creado
+					Facturama.Clients.Remove(client.Id, function (rresult, textStatus, status) 
+					{
 						console.log("Eliminado", result);
+						console.log("Estado =>", status.status);
 					});
 				});
 
-				//obtener todos los clientes
-				Facturama.Clients.List(function (result) {
+				//Obtener todos los clientes
+				Facturama.Clients.List(function (result) 
+				{
 					clientUpdate = result;
-					console.log("todos", result);
+					console.log("Todos", result);
 				});
-			},
-				function (error) {
+			},  function (error) 
+				{
 					console.log("Código de respuesta: " + error.status);
 					console.log("Mensaje: " + error.messege);
 				});
 
-		},
-			function (error) {
+		},	function (error) 
+			{
 				console.log("Código de respuesta: " + error.status);
 				console.log("Mensaje: " + error.messege);
 			}); 
 
-			Facturama.Clients.List(function (result) {
-				clientUpdate = result;
-				console.log("todos", result);
-			});
+		Facturama.Clients.List(function (result) 
+		{
+			clientUpdate = result;
+			console.log("todos", result);
+		});
 
-	}
-	catch (e) {
-		console.log("Mensaje de error: " + e.messege);
-	}
-
-
-
+	}	catch (e) 
+		{
+			console.log("Mensaje de error: " + e.messege);
+		}
 }
 
 function testListClients()

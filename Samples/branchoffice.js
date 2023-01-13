@@ -1,7 +1,21 @@
+var Branch = {
+	Name: "El sauce",
+	Description: "Sucursal del sauce, enfocada en la distribución de agua en garrafón",
+	Address: {
+		Street: "Av. del Sauce",
+		ExteriorNumber: "120",
+		InteriorNumber: "",
+		Neighborhood: "Las Flores",
+		ZipCode: "78116",
+		Locality: "",
+		Municipality: "San Luis Potosi",
+		State: "San Luis Potosi",
+		Country: "México",
+	},
+};
 var newBranch = {
 	Name: "El sauce",
-	Description:
-		"Sucursal del sauce, enfocada en la distribución de agua en garrafón",
+	Description: "Sucursal del sauce, enfocada en la distribución de agua en garrafón",
 	Address: {
 		Street: "Av. del Sauce",
 		ExteriorNumber: "120",
@@ -17,62 +31,59 @@ var newBranch = {
 
 var branchUpdate;
 
-function testCRUDBranchOffice() {
-	try {
+function testCRUDBranchOffice() 
+{
+	try 
+	{
 		var branch;
-		//creacion de una sucursal
-		Facturama.BranchOffice.Create(
-			newBranch,
-			function (result, textStatus, status) {
-				branch = result;
-				console.log("Creación =>", result);
-				console.log("Estado =>", status.status);
+		//Creación de una sucursal
+		Facturama.BranchOffice.Create(Branch,function (result, textStatus, status) 
+		{
+			branch = result;
+			console.log("Creación =>", result);
+			console.log("Estado =>", status.status);
 
-				//editar la sucursal
-				branch.Description = "CUALQUIER DESCRIPCION";
-				Facturama.BranchOffice.Update(
-					branch.Id,
-					branch,
-					function (result, textStatus, status) {
-						console.log("Edición =>", result);
-						if (status.status == 204) {
-							alert("Datos Actualizados");
-						}
+			//editar la sucursal
+			branch.Description = "CUALQUIER DESCRIPCION";
+			Facturama.BranchOffice.Update(branch.Id,branch,function (result, textStatus, status) 
+				{
+					console.log("Edición =>", result);
+					if (status.status == 204) {alert("Datos Actualizados");	}
+					console.log("Estado =>", status.status);
+
+					//obtener la sucursal editada
+					Facturama.BranchOffice.Get(branch.Id,function (result, textStatus, status) 
+					{
+						branch = result;
+						console.log("Obtener =>", result);
 						console.log("Estado =>", status.status);
 
+						//eliminar la sucursal creada
+						Facturama.BranchOffice.Remove(branch.Id, function (result, textStatus, status) 
+						{
+							console.log("Eliminado =>", result);
+							console.log("Estado =>", status.status);
+						},
+							function (error) 
+							{
+								console.log("Código de respuesta: " + error.status);
+								console.log("Mensaje: " + error.messege);
+							});
+					});
 
-						//obtener la sucursal editada
-						Facturama.BranchOffice.Get(
-							branch.Id,
-							function (result, textStatus, status) {
-								branch = result;
-								console.log("Obtener =>", result);
-								console.log("Estado =>", status.status);
-
-								//eliminar la sucursal creada
-								Facturama.BranchOffice.Remove(branch.Id, function (result, textStatus, status) {
-									console.log("Eliminado =>", result);
-									console.log("Estado =>", status.status);
-								},
-									function (error) {
-										console.log("Código de respuesta: " + error.status);
-										console.log("Mensaje: " + error.messege);
-									});
-							}
-						);
-
-						//obtener todas las sucursales
-						Facturama.BranchOffice.List(function (result) {
-							branchUpdate = result;
-							console.log("todos", result);
-						});
-					},
-					function (error) {
+					//obtener todas las sucursales
+					Facturama.BranchOffice.List(function (result) 
+					{
+						branchUpdate = result;
+						console.log("todos", result);
+					});
+					},function (error) 
+					{
 						console.log("Código de respuesta: " + error.status);
 						console.log("Mensaje: " + error.messege);
 					});
-			},
-			function (error) {
+			},function (error) 
+			{
 				console.log("Código de respuesta: " + error.status);
 				console.log("Mensaje: " + error.messege);
 			}
@@ -82,14 +93,3 @@ function testCRUDBranchOffice() {
 	}
 }
 
-Facturama.BranchOffice.Update(Branch_Id, Branch_new, function (result, textStatus, status) {
-	console.log("Edición =>", result);
-	if (status.status == 204) 
-	{
-		alert("Datos Actualizados");
-	}
-},function (error) 
-{
-	console.log("Código de respuesta: " + error.status);
-	console.log("Mensaje: " + error.messege);
-});
