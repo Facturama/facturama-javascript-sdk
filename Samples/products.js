@@ -1,4 +1,5 @@
-var newProduct = {
+var newProduct = 
+{
     "Unit": "Servicio",
     "UnitCode": "E48",
     "IdentificationNumber": "WEB003",
@@ -26,7 +27,7 @@ var newProduct = {
         "IsFederalTax": true,
         "Total": 0.106667
     }
-  ]
+]
 };
 
 var productUpdate;
@@ -36,30 +37,33 @@ function testCRUDProducts()
 try {
 
             var product;
-            //creacion de un producto
-            Facturama.Products.Create(newProduct, function(result, textStatus, status){ 
+            //Creación de un producto
+            Facturama.Products.Create(newProduct, function(result, textStatus, status)
+            { 
                 product = result;
                 console.log("creacion",result);
                 console.log("Estado =>", status.status);
             
-                //editar el producto
+                //Editar el producto
                 product.Description = "CONCEPTO EDITADO";
-                Facturama.Products.Update(product.Id, product, function(result, textStatus, status){ 
+                Facturama.Products.Update(product.Id, product, function(result, textStatus, status)
+                { 
                     console.log("edicion", result);
-                    if (status.status == 204) {
-                        alert("Datos Actualizados");
-                    }
+                    if (status.status == 204) {alert("Datos Actualizados");}
                     console.log("Estado =>", status.status);
 
                     //obtener el producto editado
-                    Facturama.Products.Get(product.Id, function(result, textStatus, status){
+                    Facturama.Products.Get(product.Id, function(result, textStatus, status)
+                    {
                         product = result;
                         console.log("obtener",result);
                         console.log("Estado =>", status.status);
 
                         //eliminar el producto creado
-                        Facturama.Products.Remove(product.Id, function(rresult, textStatus, status){ 
-                            console.log("eliminado",result);
+                        Facturama.Products.Remove(product.Id, function(rresult, textStatus, status)
+                        { 
+                            console.log("Eliminado", result);
+                            console.log("Estado =>", status.status);
                         });
                     });
 
@@ -91,18 +95,18 @@ function testListProduct()
     try
     {
         var search= "";
-    var start=0;
-    var length=100;
-    Facturama.Products.List2("start="+start+"&lenght="+length +"&search="+search,function (result) {
-        console.log(result);
-        console.log(Object.values(result.data)[0].Id);
-        console.log(Object.values(result.data)[0].Rfc);
-        console.log(Object.values(result.data)[0].Name);
-        console.log(Object.values(result.data)[0].Address);
-        console.log(Object.values(result.data)[0].CfdiUse);
-        console.log(Object.values(result.data)[0].Email);
-        console.log(Object.values(result.data)[0].FiscalRegime);
-    }); 
+        var start=0;
+        var length=100;
+        Facturama.Products.List2("start="+start+"&lenght="+length +"&search="+search,function (result) {
+            console.log(result);
+            console.log(Object.values(result.data)[0].Id);
+            console.log(Object.values(result.data)[0].Rfc);
+            console.log(Object.values(result.data)[0].Name);
+            console.log(Object.values(result.data)[0].Address);
+            console.log(Object.values(result.data)[0].CfdiUse);
+            console.log(Object.values(result.data)[0].Email);
+            console.log(Object.values(result.data)[0].FiscalRegime);
+        }); 
 
     }
     catch (e) 

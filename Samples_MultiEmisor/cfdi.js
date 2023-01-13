@@ -9,13 +9,13 @@ var newCfdi = {
     "PaymentMethod": "PUE",
     "Issuer": {
         "FiscalRegime": "601",
-        "Rfc": "AAA010101AAA",
-        "Name": "EXPRESION EN SOFTWARE"
+        "Rfc": "EKU9003173C9",
+        "Name": "ESCUELA KEMPER URGATE"
     },
     "Receiver": {
-        "Rfc": "XAXX010101000",
-        "Name": "RADIAL SOFTWARE SOLUTIONS",
-        "CfdiUse": "P01"
+        "Rfc": "URE180429TM6",
+        "Name": "UNIVERSIDAD ROBOTICA ESPAÑOLA",
+        "CfdiUse": "601"
     },
     "Items": [
     {

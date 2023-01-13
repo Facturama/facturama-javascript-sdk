@@ -4,7 +4,7 @@ Soporte API Facturama
 */
 
 var valuesFacturama = {
-    token: "cHJ1ZWJhczpwcnVlYmFzMjAxMQ==", // usuario: pruebas, Contraseña: pruebas2011 
+    token: "cHJ1ZWJhczpwcnVlYmFzMjAxMQ==", // usuario: pruebas, Contraseña: pruebas2011    
     url: "https://apisandbox.facturama.mx/"
 };
 
@@ -33,6 +33,11 @@ $.ajaxSetup({
         function listWithParam(path, param, callback) {
             return jQuery.get(settings.url + path + param, undefined, callback, "json");
         }
+
+        function retrieveStatus(path, params, callback) {
+            return jQuery.get(settings.url + path + params, undefined, callback, "json");
+        }
+
 
         function postSyncWithParam(path, param, callback) {
             $.ajax({
@@ -156,10 +161,10 @@ $.ajaxSetup({
                     return listWithParam('cfdi', param, callback);
                 },
                 Create: function (data, callback, callbackError) {
-                    postSyncWithData('2/cfdis', data, callback, callbackError); //CFDI 3.3 
+                    postSyncWithData('2/cfdis', data, callback, callbackError);  
                 },
                 Create3: function (data, callback, callbackError) {
-                    postSyncWithData('3/cfdis', data, callback, callbackError); //CFDI 4.0  
+                    postSyncWithData('3/cfdis', data, callback, callbackError);   
                 },
                 Send: function (param, callback) {
                     postSyncWithParam('cfdi', param, callback);
@@ -172,6 +177,10 @@ $.ajaxSetup({
                 },
                 Acuse: function (format, type, id, callback) {
                     retrieve('acuse/' + format + '/' + type, id, callback);
+                },
+                Status: function(params,callback)
+                {
+                    return retrieveStatus('cfdi/status' , params , callback);
                 }
             },
             TaxEntity: {

@@ -178,6 +178,19 @@
             <!-- Invocacion a la funcion del ejemplo -->
             <button onclick="testfactura_global()" class="btn btn-primary">Factura Global</button>       
         </div>
+
+        <div class="mt-5">
+            <h2>Validar Status de una Factura</h2>                        
+            <ul>
+                <li>uuid: ID del comprobante ante el SAT </li>
+                <li>issuerRfc: RFC del emisor </li>
+                <li>Descarga del PDF</li>
+                <li>receiverRfc: RFC del receptor </li>
+                <li>total: Monto total del comprobante (Incluyendo impuestos)</li>
+            </ul>
+            <!-- Invocacion a la funcion del ejemplo -->
+            <button onclick="testValidar_cfdi()" class="btn btn-primary">Validar</button>       
+        </div>
         
 
     </div>
@@ -199,6 +212,7 @@
     <script src="../Samples/complemento_pago.js"></script>
     <script src="../Samples/complemento_pago20.js"></script>
     <script src="../Samples/factura_global.js"></script>
+    <script src="../Samples/status.js"></script>
 
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
