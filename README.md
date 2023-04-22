@@ -7,7 +7,7 @@ Librería para consumir la API Web y API Multiemisor de [Facturama](https://api.
 >Puedes consultar la guía completa de la [API](https://apisandbox.facturama.mx/guias)
 
 
-## Crear cuenta de usuario
+## Crear cuenta de usuario  
 
 > Crear una cuenta de usuario en el ambiente de pruebas [Sandbox](https://dev.facturama.mx/api/login) 
 >
@@ -18,7 +18,7 @@ Librería para consumir la API Web y API Multiemisor de [Facturama](https://api.
 
 ## Crear una cuenta en producción
 
->Crear una cuenta en ambiente de producción, [Producción](https://app.facturama.mx/api/registro)
+>Crear una cuenta en ambiente de producción [Producción](https://app.facturama.mx/api/registro)
 
 
 ## Generar Token de autenticación
@@ -29,15 +29,22 @@ Librería para consumir la API Web y API Multiemisor de [Facturama](https://api.
 >
 >Las credenciales son construidas de esta forma:
 >
->El usuario y la contraseña se combinan con dos puntos (pruebas:pruebas2011).
+>El usuario y la contraseña se combinan uniendolos con dos puntos ( **pruebas:pruebas2011** ) y posteriomente se debe conbertir en formato **base64**
 >
->El string resultante está basado en la codificación base64 (cHJ1ZWJhczpwcnVlYmFzMjAxMQ==).
+>Este es el resultado despues de la conversion (**cHJ1ZWJhczpwcnVlYmFzMjAxMQ==**)
 
 ```bash
 "Authorization: cHJ1ZWJhczpwcnVlYmFzMjAxMQ=="''
 ```
 
 Coloca tu token y nombre de usuario en el script facturama.api.js o facturama.api.multiemisor.js
+
+
+### Endpoint: 
+>Sandbox https://apisandbox.facturama.mx/ \
+>Producción https://apisandbox.facturama.mx/
+
+
 
 ```javascript
 var valuesFacturama = {
@@ -74,7 +81,7 @@ Facturas
 >Enviar por correo
 > 
 
-Perfil Fiscal
+## Perfil Fiscal
 - Consultar Perfil
 - Suscripción actual
 - Carga de Logo
@@ -125,7 +132,7 @@ Facturama.Clients.Create(newClient, function (result, textStatus, status)
     
 ```
 
-### Eliminar Cliente
+### Eliminar Cliente  
 
 ```javascript
 
