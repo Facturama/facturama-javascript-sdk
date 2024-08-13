@@ -1,6 +1,11 @@
 # Facturama JavaScript SDK
 
-[NOTE] This document is also available in [English]
+> [NOTE] This document is also available in [English].
+>
+> Librería para consumir la API Web y API Multiemisor de [Facturama](https://api.facturama.mx/).
+>
+> Puedes consultar la guía completa de la [API](https://apisandbox.facturama.mx/guias).
+
 
 Librería para consumir la API Web y API Multiemisor de [Facturama](https://api.facturama.mx/)
 
@@ -54,7 +59,9 @@ var valuesFacturama =
 
 ### Dependencias
 
-* jQuery http://jquery.com/
+
+### Dependencias
+
 
 # API Web
 
@@ -863,6 +870,7 @@ var newCfdi = {
   ]
 };
 
+
 Facturama.Cfdi.Create3(newCfdi, function(result, textStatus, status)
 {
     cfdi = result;
@@ -876,6 +884,8 @@ Facturama.Cfdi.Create3(newCfdi, function(result, textStatus, status)
     }
 });        
 
+
 ```
+
 
 [English]: ./README-en.md
