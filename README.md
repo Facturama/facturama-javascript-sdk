@@ -58,10 +58,7 @@ var valuesFacturama =
 ## Inicio Rápido
 
 ### Dependencias
-
-
-### Dependencias
-
+* jQuery http://jquery.com/
 
 # API Web
 
