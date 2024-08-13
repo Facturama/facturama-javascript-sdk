@@ -1,8 +1,8 @@
 var newCfdi= 
 {
-    "Serie": "C",
+    //"Serie": "C",
     "Currency": "MXN",
-    "ExpeditionPlace": "00000",
+    "ExpeditionPlace": "78000",
     "PaymentConditions": "CREDITO A SIETE DIAS",
     "CfdiType": "I",
     "PaymentForm": "03",
@@ -11,7 +11,7 @@ var newCfdi=
     {
         "Periodicity": "04",
         "Months": "04",
-        "Year": "2022"
+        "Year": "2024"
     },
 	"Receiver": 
     {

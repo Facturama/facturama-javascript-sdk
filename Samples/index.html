@@ -29,6 +29,7 @@
             border-color: #00bcd4 !important;
             border-radius: 2rem;
         }
+        
     </style>
   </head>
   <body>
@@ -62,7 +63,13 @@
                     <i> Los datos de la entidad fiscal también pueden ser modificados en el <a href="https://apisandbox.facturama.mx/guias/perfil-fiscal">Perfil fiscal</a> </i>
                 </p>
                 <!-- Invocacion a la funcion del ejemplo -->
-                <button onclick="testTaxEntity()" class="btn btn-primary">Datos de la entidad</button>                        
+                <button onclick="getTaxEntity()" class="btn btn-primary">Consultar</button> 
+                <button onclick="putTaxEntity()" class="btn btn-primary">Editar</button>   
+                <button onclick="putCsd()" class="btn btn-primary">Actualizar CSD</button>
+
+
+                
+                       
     
             </div>
 
@@ -73,7 +80,11 @@
                 <i> Los datos de los clientes, pueden ser modificados también desde la plataforma de Facturama <a href="https://sandbox.facturama.mx/Inventory/Clients">Catálogo de clientes</a> </i>
             </p>
             <!-- Invocacion a la funcion del ejemplo -->
-            <button onclick="testCRUDClients()" class="btn btn-primary">Clientes</button>                        
+            <button onclick="NuevoCliente()" class="btn btn-primary">Nuevo Cliente</button>
+            <button onclick="EditarCliente()" class="btn btn-primary">Editar</button>
+            <button onclick="EliminarCliente()" class="btn btn-primary">Eliminar</button>
+            <button onclick="ListarCliente()" class="btn btn-primary">Listar</button>
+
 
         </div>
 
@@ -91,7 +102,7 @@
                 <i> Los datos de los clientes, pueden ser modificados también desde la plataforma de Facturama <a href="https://sandbox.facturama.mx/Inventory/Clients">Catálogo de clientes</a> </i>
             </p>
             <!-- Invocacion a la funcion del ejemplo -->
-            <button onclick="testListClients()" class="btn btn-primary">Listar Clientes</button>                        
+            <button onclick="ListaPaginada()" class="btn btn-primary">Listar Clientes</button>                        
 
         </div>
 
@@ -103,7 +114,10 @@
                 <i> datos de los productos, pueden ser modificados también desde la plataforma de Facturama <a href="https://sandbox.facturama.mx/Inventory/Products">Catálogo de productos</a> </i>
             </p>
             <!-- Invocacion a la funcion del ejemplo -->
-            <button onclick="testCRUDProducts()" class="btn btn-primary">Productos</button>                        
+            <button onclick="NuevoProducto()" class="btn btn-primary">Nuevo Producto</button>
+            <button onclick="EditarProducto()" class="btn btn-primary">Editar </button>
+            <button onclick="EliminarProducto()" class="btn btn-primary">Eliminar</button>
+            <button onclick="ListarProductos()" class="btn btn-primary">Listar</button>                       
     
         </div>
 
@@ -149,7 +163,6 @@
                 <li>Cancelar CFDI</li>
             </ul>
             <!-- Invocacion a la funcion del ejemplo -->
-            <button onclick="testCRUDCfdi()" class="btn btn-primary">Creación de CFDI 3.3</button>  
             <button onclick="testCRUDCfdi40()" class="btn btn-primary">Creación de CFDI 4.0</button>       
         </div>
         
@@ -190,6 +203,18 @@
             </ul>
             <!-- Invocacion a la funcion del ejemplo -->
             <button onclick="testValidar_cfdi()" class="btn btn-primary">Validar</button>       
+        </div>
+
+        <div class="mt-5">
+            <h2>Validar Datos de cliente</h2>                        
+            <ul>
+                <li>Rfc </li>
+                <li>Name</li>
+                <li>ZipCode</li>
+                <li>FiscalRegime </li>
+            </ul>
+            <!-- Invocacion a la funcion del ejemplo -->
+            <button onclick="testValidarCustomer_cfdi()" class="btn btn-primary">Validar</button>       
         </div>
         
 

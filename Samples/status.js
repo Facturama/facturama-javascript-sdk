@@ -26,3 +26,29 @@ var total="5916.00";
         }
       );
 }
+
+var datos = 
+{
+  "Rfc": "EKU9003173C9",
+  "Name": "ESCUELA KEMPER URGATE",
+  "ZipCode":"26015",
+  "FiscalRegime": "601"
+}
+function testValidarCustomer_cfdi()
+{
+    Facturama.customers.validate(datos,
+        function (result, textStatus, status) {
+            console.log("Obtener =>", result);
+            console.log("Estado =>", status.status);
+        },
+        function (error) 
+        {
+          console.log("Código de respuesta: " + error.status);
+			    console.log("Mensaje: " + error.messege);
+          if (error && error.responseJSON) 
+          {
+            console.log("errores", error.responseJSON);
+          }
+        }
+      );
+}

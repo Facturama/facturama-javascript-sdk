@@ -1,24 +1,24 @@
-var newCfdi = {
-    "Serie": "B",
+var newCfdi40 = {
+    //"Serie": "B",
     "Currency": "MXN",
-    "ExpeditionPlace": "78140",
+    "ExpeditionPlace": "78000",
     "PaymentConditions": "CREDITO A SIETE DIAS",
     "Folio": "100",
     "CfdiType": "I",
     "PaymentForm": "03",
     "PaymentMethod": "PUE",
     "Issuer":{
-        "Rfc": "URE180429TM6",
-        "Name": "UNIVERSIDAD ROBOTICA ESPAÑOLA",
+        "Rfc": "EKU9003173C9",
+        "Name": "ESCUELA KEMPER URGATE",
         "FiscalRegime": "601"        
     },
     "Receiver": 
     {
         "Rfc": "EKU9003173C9",
         "Name": "ESCUELA KEMPER URGATE",
-        "CfdiUse": "P01",
+        "CfdiUse": "G03",
         "FiscalRegime": "603", 	
-        "TaxZipCode": "26015"	
+        "TaxZipCode": "42501"	
     },
     "Items": [
     {
@@ -68,7 +68,7 @@ function testCRUDCfdiMultiEmisor40() {
     var cfdi;
 
     //creacion de un CFDI MULTIEMISOR
-    Facturama.Cfdi.Create3(newCfdi, function(result){ 
+    Facturama.Cfdi.Create3(newCfdi40, function(result){ 
         cfdi = result;
         console.log("creacion multiemisor",result);
     

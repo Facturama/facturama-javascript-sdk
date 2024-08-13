@@ -9,7 +9,7 @@ var newCsd = {
 
 
 function testCertificates() {
-    var rfc = "AAA010101AAA";
+    var rfc = "EKU9003173C9";
     var certif;
     
     //obtener todos los certificados dados de alta para el usuario
@@ -43,7 +43,7 @@ function testCertificates() {
     });
 
     //se actualiza el certificado de un rfc en especifico
-    newCsd.PrivateKeyPassword = "12345678";
+    newCsd.PrivateKeyPassword = "12345678a";
     Facturama.Certificates.Update(rfc, newCsd, function (result) {
         certif = result;
         console.log("actualizacion csd", result);
