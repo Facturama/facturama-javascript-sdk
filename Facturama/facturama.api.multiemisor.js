@@ -4,7 +4,7 @@ Soporte API Facturama
 */
 
 var valuesFacturama = {
-    user: "pruebas",
+    useragent: "pruebas",
     token: "dXN1YXJpbzpwcnVlYmFz......", 
     url: "https://apisandbox.facturama.mx/"
 };
@@ -12,7 +12,7 @@ var valuesFacturama = {
 $.ajaxSetup({
     beforeSend: function (xhr) {
         xhr.withCredentials = true;
-        xhr.setRequestHeader("User-Agent",valuesFacturama.user)
+        xhr.setRequestHeader("User-Agent", valuesFacturama.useragent)
         xhr.setRequestHeader("Authorization", "Basic " + valuesFacturama.token);
     }
 });
