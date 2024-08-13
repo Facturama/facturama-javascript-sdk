@@ -74,11 +74,11 @@ function EditarCliente() {
 
 function EliminarCliente() {
 	var IdClient = "1CMATRSzNovIpge-mkzwFw2";
-	Facturama.Clients.Remove(client.Id, function (result, textStatus, status) {
+	Facturama.Clients.Remove(IdClient, function (result, textStatus, status) {
 		console.log("Eliminado", result);
 		console.log("Estado =>", status.status);
 
-	})
+	});
 };
 
 

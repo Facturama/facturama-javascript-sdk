@@ -27,24 +27,24 @@ Puedes consultar la guía completa de la [API](https://apisandbox.facturama.mx/g
 >
 >Las credenciales son construidas de esta forma:
 >
->El usuario y la contraseña se combinan uniendo con dos puntos ( **pruebas:pruebas2011** ) y posteriomente se debe conbertir en formato **base64**
+>El usuario y la contraseña se combinan uniendo con dos puntos ( **tu_usuario:tu_contraseña** ) y posteriomente se debe conbertir en formato **base64**
 >
->Este es el resultado despues de la conversión (**cHJ1ZWJhczpwcnVlYmFzMjAxMQ==**)
+>Este es el resultado despues de la conversión (**dXN1YXJpbzpwcnVlYmFz......**)
 
 ```bash
-"Authorization: Basic cHJ1ZWJhczpwcnVlYmFzMjAxMQ=="
+"Authorization: Basic dXN1YXJpbzpwcnVlYmFz....."
 ```
 
 Coloca en ednpoint,tu token y nombre de usuario en el script **facturama.api.js** o **facturama.api.multiemisor.js**
 
 ### Endpoints 
 >Sandbox = https://apisandbox.facturama.mx/   
->Producción = https://apisandbox.facturama.mx/
+>Producción = https://api.facturama.mx/
 
 ```javascript
 var valuesFacturama = 
 {
-    token: "cHJ1ZWJhczpwcnVlYmFzMjAxMQ==", 
+    token: "dXN1YXJpbzpwcnVlYmFz......", 
     url: "https://apisandbox.facturama.mx/",
     useragent: "tu_usuario",
 };
@@ -58,7 +58,7 @@ var valuesFacturama =
 
 # API Web
 
-> Creación de CFDI con un único emisor, (el propietario de la cuenta, cuyo Perfil Fiscal se tiene configurado)
+> Creación de CFDI con un único emisor, (el propietario de la cuenta cuyo Perfil Fiscal se tiene configurado)
 > 
 > *Todas las operaciones son reflejadas en la plataforma web.*
 
@@ -137,11 +137,12 @@ Facturama.Clients.Create(newClient, function (result, textStatus, status)
 ### Eliminar Cliente  
 
 ```javascript
-Facturama.Clients.Remove(client.Id, function (rresult, textStatus, status) 
-{
-    console.log("Eliminado", result);
-    console.log("Estado =>", status.status);
-});
+	var IdClient = "1CMATRSzNovIpge-mkzwFw2";
+	Facturama.Clients.Remove(IdClient, function (result, textStatus, status) {
+		console.log("Eliminado", result);
+		console.log("Estado =>", status.status);
+
+	});
 ```
 
 ### Editar Cliente
@@ -155,7 +156,7 @@ var UpdateClient =
     "FiscalRegime": "601",
     "Email": "test_email@test.mx",
     "CfdiUse": "G03",
-    "TaxResidence": "65000",
+    "TaxResidence": "86991",
     "NumRegIdTrib": "9999999999",
     "TaxZipCode": "65000",
     "Address": 
@@ -164,7 +165,7 @@ var UpdateClient =
         "ExteriorNumber": "123",
         "InteriorNumber": "456",
         "Neighborhood": "COLOMBIA",
-        "ZipCode": "65000",
+        "ZipCode": "86991",
         "Locality": "NUEVO LEON",
         "Municipality": "ANAHUAC",
         "State": "NUEVO LEON",
@@ -206,9 +207,7 @@ var search="";
 var start=0;
 var length=100;
 Facturama.Clients.List2("start="+start+"&lenght="+length +"&search="+search,function (result) 
-{
-console.log(result);
-};
+{console.log(result);};
 
 ```
 
@@ -216,7 +215,7 @@ console.log(result);
 
 ```javascript
 client_Rfc="URE180429TM6";
-Facturama.Clients.Get(client.Rfc, function(result)
+Facturama.Clients.Get(client_Rfc, function(result)
 {console.log("Obtener",result); });
 
 ```
@@ -419,25 +418,22 @@ var newCsd = {
 	"PrivateKeyPassword": "12345678a"
   };
 
-  			  Facturama.TaxEntity.UploadCsd(newCsd, function(result)
-			  { 
-				  clientUpdate = result;
-				  console.log("Carga de CSD",result);
-  
-				  Facturama.TaxEntity.Get(function(result)
-				  { 
-					  taxentity = result;
-					  console.log("Datos cuenta modif",result);
-				  });
-  
-			  }, 
+  	Facturama.TaxEntity.UploadCsd(newCsd, function(result)
+		{ 
+			clientUpdate = result;
+			console.log("Carga de CSD",result);
+            Facturama.TaxEntity.Get(function(result)
+				{ 
+					taxentity = result;
+					onsole.log("Datos cuenta modif",result);
+				});
+			  },
 			  function(error) 
 			  {
 				  if (error && error.responseJSON) 
 				  {
 					  console.log("errores", error.responseJSON);
 				  }
-					  
 			  });
 ```
 
@@ -482,7 +478,7 @@ var newCfdi40=
         "Name": "ZAPATERIA URTADO ÑERI",
         "CfdiUse": "G03",
         "FiscalRegime": "601",
-        "TaxZipCode": "77060"
+        "TaxZipCode": "34541"
     },
     "Items": 
 	[{
@@ -550,7 +546,7 @@ var cfdiInicial =
         "Name": "ZAPATERIA URTADO ÑERI",
         "CfdiUse": "G03",
         "FiscalRegime": "601",
-        "TaxZipCode": "77060"
+        "TaxZipCode": "34541"
     },
     "Items": [
     {
@@ -710,14 +706,22 @@ Facturama.Cfdi.Send("?cfdiType=" + type + "&cfdiId=" + Cfdi_Id + "&email=" + ema
 
 ## Operaciones API Multiemisor
 
-- Crear, Consultar, Cancelar descarga de XML
-- CRUD de CSD (Certificados de los Sellos Digitales).
+>
+>Crear
+>
+>Consultar 
+>
+>Cancelar 
+>
+>Descarga de XML
+>
+>CRUD de CSD (Certificados de los Sellos Digitales).
 
 ## Cargar CSD
 ```javascript
 var newCsd = {
     "Rfc": "EKU9003173C9",
-    "Certificate": "MIIFuzCCA6OgAwIBAgIUMzAwMDEwMDAwMDA0MDAwMDI0MzQwDQYJKoZIhvcNAQELBQAwggErMQ8wDQYDVQQDDAZBQyBVQVQxLjAsBgNVBAoMJVNFUlZJQ0lPIERFIEFETUlOSVNUUkFDSU9OIFRSSUJVVEFSSUExGjAYBgNVBAsMEVNBVC1JRVMgQXV0aG9yaXR5MSgwJgYJKoZIhvcNAQkBFhlvc2Nhci5tYXJ0aW5lekBzYXQuZ29iLm14MR0wGwYDVQQJDBQzcmEgY2VycmFkYSBkZSBjYWRpejEOMAwGA1UEEQwFMDYzNzAxCzAJBgNVBAYTAk1YMRkwFwYDVQQIDBBDSVVEQUQgREUgTUVYSUNPMREwDwYDVQQHDAhDT1lPQUNBTjERMA8GA1UELRMIMi41LjQuNDUxJTAjBgkqhkiG9w0BCQITFnJlc3BvbnNhYmxlOiBBQ0RNQS1TQVQwHhcNMTkwNjE3MTk0NDE0WhcNMjMwNjE3MTk0NDE0WjCB4jEnMCUGA1UEAxMeRVNDVUVMQSBLRU1QRVIgVVJHQVRFIFNBIERFIENWMScwJQYDVQQpEx5FU0NVRUxBIEtFTVBFUiBVUkdBVEUgU0EgREUgQ1YxJzAlBgNVBAoTHkVTQ1VFTEEgS0VNUEVSIFVSR0FURSBTQSBERSBDVjElMCMGA1UELRMcRUtVOTAwMzE3M0M5IC8gWElRQjg5MTExNlFFNDEeMBwGA1UEBRMVIC8gWElRQjg5MTExNk1HUk1aUjA1MR4wHAYDVQQLExVFc2N1ZWxhIEtlbXBlciBVcmdhdGUwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQCN0peKpgfOL75iYRv1fqq+oVYsLPVUR/GibYmGKc9InHFy5lYF6OTYjnIIvmkOdRobbGlCUxORX/tLsl8Ya9gm6Yo7hHnODRBIDup3GISFzB/96R9K/MzYQOcscMIoBDARaycnLvy7FlMvO7/rlVnsSARxZRO8Kz8Zkksj2zpeYpjZIya/369+oGqQk1cTRkHo59JvJ4Tfbk/3iIyf4H/Ini9nBe9cYWo0MnKob7DDt/vsdi5tA8mMtA953LapNyCZIDCRQQlUGNgDqY9/8F5mUvVgkcczsIgGdvf9vMQPSf3jjCiKj7j6ucxl1+FwJWmbvgNmiaUR/0q4m2rm78lFAgMBAAGjHTAbMAwGA1UdEwEB/wQCMAAwCwYDVR0PBAQDAgbAMA0GCSqGSIb3DQEBCwUAA4ICAQBcpj1TjT4jiinIujIdAlFzE6kRwYJCnDG08zSp4kSnShjxADGEXH2chehKMV0FY7c4njA5eDGdA/G2OCTPvF5rpeCZP5Dw504RZkYDl2suRz+wa1sNBVpbnBJEK0fQcN3IftBwsgNFdFhUtCyw3lus1SSJbPxjLHS6FcZZ51YSeIfcNXOAuTqdimusaXq15GrSrCOkM6n2jfj2sMJYM2HXaXJ6rGTEgYmhYdwxWtil6RfZB+fGQ/H9I9WLnl4KTZUS6C9+NLHh4FPDhSk19fpS2S/56aqgFoGAkXAYt9Fy5ECaPcULIfJ1DEbsXKyRdCv3JY89+0MNkOdaDnsemS2o5Gl08zI4iYtt3L40gAZ60NPh31kVLnYNsmvfNxYyKp+AeJtDHyW9w7ftM0Hoi+BuRmcAQSKFV3pk8j51la+jrRBrAUv8blbRcQ5BiZUwJzHFEKIwTsRGoRyEx96sNnB03n6GTwjIGz92SmLdNl95r9rkvp+2m4S6q1lPuXaFg7DGBrXWC8iyqeWE2iobdwIIuXPTMVqQb12m1dAkJVRO5NdHnP/MpqOvOgLqoZBNHGyBg4Gqm4sCJHCxA1c8Elfa2RQTCk0tAzllL4vOnI1GHkGJn65xokGsaU4B4D36xh7eWrfj4/pgWHmtoDAYa8wzSwo2GVCZOs+mtEgOQB91/g==",
+    "Certificate": "MIIFsDCCA5igAwIBAgIUMzAwMDEwMDAwMDA1MDAwMDM0MTYwDQYJKoZIhvcNAQELBQAwggErMQ8wDQYDVQQDDAZBQyBVQVQxLjAsBgNVBAoMJVNFUlZJQ0lPIERFIEFETUlOSVNUUkFDSU9OIFRSSUJVVEFSSUExGjAYBgNVBAsMEVNBVC1JRVMgQXV0aG9yaXR5MSgwJgYJKoZIhvcNAQkBFhlvc2Nhci5tYXJ0aW5lekBzYXQuZ29iLm14MR0wGwYDVQQJDBQzcmEgY2VycmFkYSBkZSBjYWxpejEOMAwGA1UEEQwFMDYzNzAxCzAJBgNVBAYTAk1YMRkwFwYDVQQIDBBDSVVEQUQgREUgTUVYSUNPMREwDwYDVQQHDAhDT1lPQUNBTjERMA8GA1UELRMIMi41LjQuNDUxJTAjBgkqhkiG9w0BCQITFnJlc3BvbnNhYmxlOiBBQ0RNQS1TQVQwHhcNMjMwNTE4MTE0MzUxWhcNMjcwNTE4MTE0MzUxWjCB1zEnMCUGA1UEAxMeRVNDVUVMQSBLRU1QRVIgVVJHQVRFIFNBIERFIENWMScwJQYDVQQpEx5FU0NVRUxBIEtFTVBFUiBVUkdBVEUgU0EgREUgQ1YxJzAlBgNVBAoTHkVTQ1VFTEEgS0VNUEVSIFVSR0FURSBTQSBERSBDVjElMCMGA1UELRMcRUtVOTAwMzE3M0M5IC8gVkFEQTgwMDkyN0RKMzEeMBwGA1UEBRMVIC8gVkFEQTgwMDkyN0hTUlNSTDA1MRMwEQYDVQQLEwpTdWN1cnNhbCAxMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAtmecO6n2GS0zL025gbHGQVxznPDICoXzR2uUngz4DqxVUC/w9cE6FxSiXm2ap8Gcjg7wmcZfm85EBaxCx/0J2u5CqnhzIoGCdhBPuhWQnIh5TLgj/X6uNquwZkKChbNe9aeFirU/JbyN7Egia9oKH9KZUsodiM/pWAH00PCtoKJ9OBcSHMq8Rqa3KKoBcfkg1ZrgueffwRLws9yOcRWLb02sDOPzGIm/jEFicVYt2Hw1qdRE5xmTZ7AGG0UHs+unkGjpCVeJ+BEBn0JPLWVvDKHZAQMj6s5Bku35+d/MyATkpOPsGT/VTnsouxekDfikJD1f7A1ZpJbqDpkJnss3vQIDAQABox0wGzAMBgNVHRMBAf8EAjAAMAsGA1UdDwQEAwIGwDANBgkqhkiG9w0BAQsFAAOCAgEAFaUgj5PqgvJigNMgtrdXZnbPfVBbukAbW4OGnUhNrA7SRAAfv2BSGk16PI0nBOr7qF2mItmBnjgEwk+DTv8Zr7w5qp7vleC6dIsZFNJoa6ZndrE/f7KO1CYruLXr5gwEkIyGfJ9NwyIagvHHMszzyHiSZIA850fWtbqtythpAliJ2jF35M5pNS+YTkRB+T6L/c6m00ymN3q9lT1rB03YywxrLreRSFZOSrbwWfg34EJbHfbFXpCSVYdJRfiVdvHnewN0r5fUlPtR9stQHyuqewzdkyb5jTTw02D2cUfL57vlPStBj7SEi3uOWvLrsiDnnCIxRMYJ2UA2ktDKHk+zWnsDmaeleSzonv2CHW42yXYPCvWi88oE1DJNYLNkIjua7MxAnkNZbScNw01A6zbLsZ3y8G6eEYnxSTRfwjd8EP4kdiHNJftm7Z4iRU7HOVh79/lRWB+gd171s3d/mI9kte3MRy6V8MMEMCAnMboGpaooYwgAmwclI2XZCczNWXfhaWe0ZS5PmytD/GDpXzkX0oEgY9K/uYo5V77NdZbGAjmyi8cE2B2ogvyaN2XfIInrZPgEffJ4AB7kFA2mwesdLOCh0BLD9itmCve3A1FGR4+stO2ANUoiI3w3Tv2yQSg4bjeDlJ08lXaaFCLW2peEXMXjQUk7fmpb5MNuOUTW6BE=",
     "PrivateKey": "MIIFDjBABgkqhkiG9w0BBQ0wMzAbBgkqhkiG9w0BBQwwDgQIAgEAAoIBAQACAggAMBQGCCqGSIb3DQMHBAgwggS8AgEAMASCBMh4EHl7aNSCaMDA1VlRoXCZ5UUmqErAbucRFLOMmsAaFNkyWR0dXIAh0CMjE6NpQIMZhQ0HH/4tHgmwh4kCawGjIwERoG6/IH3mCt7u19J5+m6gUEGOJdEMXj976E5lKCd/EG6t6lCq66GE3rgux/nFmeQZvsjLlzPyhe2j+X81LrGudITTjDdgLI0EdbdV9CUJwWbibzrVxjuAVShRh07XPL/DiEw3Wk2+kdy4cfWmMvh0U55p0RKZopNkWuVVSvr3ai7ZNCwHZWDVqkUDpwDDGdyt0kYQ7qoKanIxv/A9wv6ekq0LQ/yLlOcelkxQeb8Glu4RXe+krRvrASw1eBAQ3mvNKpngwF8vtlyoil41PjHUOKALMJtNpywckRRYOk4703ylWIzTfdBlrZ6VmDBjdC5723G1HAx3R/x+o+08++RNiFaN06Ly5QbZZvjnealDfSKz1VKRHWeXggaW87rl4n0SOOWnvabKs4ZWRXTS0dhWK+KD/yYYQypTslDSXQrmyMkpc1Zcb4p9RTjodXxGCWdsR5i5+Ro/RiJvxWwwaO3YW6eaSavV0ROqANQ+A+GizMlxsVjl6G5Ooh6ORdA7jTNWmK44Icgyz6QFNh+J3NibxVK2GZxsQRi+N3HXeKYtq5SDXARA0BsaJQzYfDotA9LFgmFKg9jVhtcc1V3rtpaJ5sab8tdBTPPyN/XT8fA0GxlIX+hjLd3E9wB7qzNR6PZ84UKDxhCGWrLuIoSzuCbr+TD9UCJprsfTu8kr8Pur4rrxm7Zu1MsJRR9U5Ut+O9FZfw4SqGykyTGGh0v1gDG8esKpTW5MKNk9dRwDNHEmIF6tE6NeXDlzovf8VW6z9JA6AVUkgiFjDvLUY5MgyTqPB9RJNMSAZBzrkZgXyHlmFz2rvPqQGFbAtukjeRNS+nkVayLqfQnqpgthBvsgDUgFn03z0U2Svb094Q5XHMeQ4KM/nMWTEUC+8cybYhwVklJU7FBl9nzs66wkMZpViIrVWwSB2k9R1r/ZQcmeL+LR+WwgCtRs4It1rNVkxXwYHjsFM2Ce46TWhbVMF/h7Ap4lOTS15EHC8RvIBBcR2w1iJ+3pXiMeihArTELVnQsS31X3kxbBp3dGvLvW7PxDlwwdUQOXnMoimUCI/h0uPdSRULPAQHgSp9+TwqI0Uswb7cEiXnN8PySN5Tk109CYJjKqCxtuXu+oOeQV2I/0knQLd2zol+yIzNLj5a/HvyN+kOhIGi6TrFThuiVbbtnTtRM1CzKtFGuw5lYrwskkkvenoSLNY0N85QCU8ugjc3Bw4JZ9jNrDUaJ1Vb5/+1GQx/q/Dbxnl+FK6wMLjXy5JdFDeQyjBEBqndQxrs9cM5xBnl6AYs2Xymydafm2qK0cEDzwOPMpVcKU8sXS/AHvtgsn+rjMzW0wrQblWE0Ht/74GgfCj4diCDtzxQ0ggi6yJD+yhLZtVVqmKS3Gwnj9RxPLNfpgzPP01eYyBBi/W0RWTzcTb8iMxWX52MTU0oX9//4I7CAPXn0ZhpWAAIvUmkfjwfEModH7iwwaNtZFlT2rlzeshbP++UCEtqbwvveDRhmr5sMYkl+duEOca5156fcRy4tQ8Y3moNcKFKzHGMenShEIHz+W5KE=",
     "PrivateKeyPassword": "12345678a"
 };
@@ -772,10 +776,10 @@ var newCsd = {
 ## Actualizar un Certificado
 ```javascript
 
-    newCsd.PrivateKeyPassword = "12345678";
+    newCsd.PrivateKeyPassword = "12345678a";
     Facturama.Certificates.Update("EKU9003173C9", newCsd, function (result) {
         certif = result;
-        console.log("actualizacion csd", result);
+        console.log("actualización csd", result);
     }, function (error) {
         if (error && error.responseJSON) {
             console.log("errores", error.responseJSON);
@@ -814,7 +818,7 @@ var newCfdi = {
         "Name": "ESCUELA KEMPER URGATE",
         "CfdiUse": "P01",
         "FiscalRegime": "603", 	
-        "TaxZipCode": "26015"	
+        "TaxZipCode": "42501"	
     },
     "Items": [
     {
