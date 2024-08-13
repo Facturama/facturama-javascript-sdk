@@ -1,16 +1,18 @@
 /*
 Soporte API Facturama
-    soporte-api@facturama.mx
+    facturamasoporte@freshbooks.com 
 */
 
+
 var valuesFacturama = {
-    token: "cHJ1ZWJhczpwcnVlYmFzMjAxMQ==", // usuario: pruebas, Contraseña: pruebas2011    
+    user: "pruebas",
+    token: "dXN1YXJpbzpwcnVlYmFz.......",
     url: "https://apisandbox.facturama.mx/"
 };
-
 $.ajaxSetup({
     beforeSend: function (xhr) {
         xhr.withCredentials = true;
+        xhr.setRequestHeader("User-Agent",valuesFacturama.user)
         xhr.setRequestHeader("Authorization", "Basic " + valuesFacturama.token);
     }
 });
@@ -160,9 +162,6 @@ $.ajaxSetup({
                 List: function (param, callback) {
                     return listWithParam('cfdi', param, callback);
                 },
-                Create: function (data, callback, callbackError) {
-                    postSyncWithData('2/cfdis', data, callback, callbackError);  
-                },
                 Create3: function (data, callback, callbackError) {
                     postSyncWithData('3/cfdis', data, callback, callbackError);   
                 },
@@ -195,6 +194,11 @@ $.ajaxSetup({
                 },
                 UploadImage: function (data, callback, callbackError) {
                     putSyncWithData('taxEntity/UploadLogo', data, callback, callbackError);
+                }
+            },
+            SuscriptionPlan:{
+                Get: function(callback){
+                    return list('suscriptionPlan', callback);
                 }
             },
             Catalogs: {
@@ -245,6 +249,11 @@ $.ajaxSetup({
                 },
                 CfdiUses: function (keyword, callback) {
                     return list('catalogs/CfdiUses?keyword=' + keyword, callback);
+                }
+            },
+            customers: {
+                validate: function (data, callback, callbackError) {
+                    postSyncWithData('api/customers/validate', data, callback, callbackError);
                 }
             }
         };

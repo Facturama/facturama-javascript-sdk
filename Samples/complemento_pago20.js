@@ -22,7 +22,7 @@ var cfdiInicial =
         "Name": "ZAPATERIA URTADO ÑERI",
         "CfdiUse": "G03",
         "FiscalRegime": "601",
-        "TaxZipCode": "77060"
+        "TaxZipCode": "34541"
     },
     "Items": [
     {
